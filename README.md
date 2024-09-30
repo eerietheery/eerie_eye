@@ -1,5 +1,10 @@
 Got lazy, here's an AI's readme for the app: 
 # eerieEye - Glitch Image Editor
+
+<p align="center">
+  👁️
+</p>
+
 ## User Documentation
 
 ### Introduction
