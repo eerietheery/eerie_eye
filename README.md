@@ -131,7 +131,7 @@ The waveform display is a powerful feature that allows you to visualize and sele
 
 ### Future Developments
 
-The eerieEye team is continuously working on improving the application. Future updates may include:
+Future updates may include:
 - Additional glitch effects and filters.
 - Batch processing capabilities.
 - Custom effect chaining and presets.
