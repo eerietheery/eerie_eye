@@ -2,7 +2,7 @@ Got lazy, here's an AI's readme for the app:
 # eerieEye - Glitch Image Editor
 
 <p align="center">
-  <font size="32">👁️</font>
+  Click to download Windows executable:<a href="https://github.com/eerietheery/eerie_eye/releases/download/main/eerieEye.exe">👁️</a>
 </p>
 
 ## User Documentation
