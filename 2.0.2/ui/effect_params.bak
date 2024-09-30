@@ -1,0 +1,170 @@
+# ui/effect_params.py
+import tkinter as tk
+from tkinter import ttk
+
+class EffectParams:
+    def __init__(self, master, on_change_callback):
+        self.master = master
+        self.on_change_callback = on_change_callback
+        self.param_entries = {}
+
+    def update_params(self, effect_type):
+        for widget in self.master.winfo_children():
+            widget.destroy()
+        self.param_entries.clear()
+
+        params = {
+            'channel_shift': ['shift_r', 'shift_g', 'shift_b', 'axis_r', 'axis_g', 'axis_b'],
+            'delay': ['delay_time', 'num_echoes', 'decay_factor'],
+            'pixel_sort': ['threshold', 'sorting_function', 'direction'],
+            'tremolo_legacy': ['wave_type', 'phase', 'wet', 'lfo'],
+            'dynamic_tremolo': ['wave_type', 'phase', 'wet', 'lfo', 'displacement_strength'],
+            'reverb': ['room_size', 'pre_delay', 'reverberance', 'hf_damping', 'tone_low', 'tone_high', 'wet_gain', 'dry_gain', 'stereo_width', 'wet_only'],
+            'wave_distortion': ['waveform', 'amplitude', 'frequency', 'phase', 'direction'],
+            'color_quantization': ['num_colors', 'dither_amount', 'dither_mode', 'bit_reduction']
+        }[effect_type]
+
+        self.create_param_entries(effect_type, params)
+
+    def create_param_entries(self, effect_type, params):
+        if effect_type == 'reverb':
+            self.create_reverb_params(params)
+        elif effect_type == 'channel_shift':
+            self.create_channel_shift_params()
+        elif effect_type == 'pixel_sort':
+            self.create_pixel_sort_params()
+        elif effect_type == 'wave_distortion':
+            self.create_wave_distortion_params()
+        elif effect_type == 'color_quantization':
+            self.create_color_quantization_params()
+        else:
+            self.create_default_params(params)
+
+    def create_reverb_params(self, params):
+        for i, param in enumerate(params):
+            row = i % 5
+            col = i // 5 * 2
+            tk.Label(self.master, text=param).grid(row=row, column=col, padx=5, pady=2, sticky='e')
+            if param in ['room_size', 'reverberance', 'hf_damping', 'tone_low', 'tone_high', 'stereo_width']:
+                entry = tk.Scale(self.master, from_=0, to=100, orient=tk.HORIZONTAL, command=self.on_change_callback)
+                entry.set(75 if param == 'room_size' else 50)
+            elif param == 'pre_delay':
+                entry = tk.Scale(self.master, from_=0, to=200, orient=tk.HORIZONTAL, command=self.on_change_callback)
+                entry.set(10)
+            elif param in ['wet_gain', 'dry_gain']:
+                entry = tk.Scale(self.master, from_=-20, to=10, orient=tk.HORIZONTAL, command=self.on_change_callback)
+                entry.set(-1)
+            elif param == 'wet_only':
+                var = tk.BooleanVar()
+                entry = tk.Checkbutton(self.master, variable=var, command=self.on_change_callback)
+                entry.var = var
+            else:
+                entry = tk.Entry(self.master)
+            entry.grid(row=row, column=col+1, padx=5, pady=2, sticky='w')
+            self.param_entries[param] = entry
+
+    def create_channel_shift_params(self):
+        for i, color in enumerate(['r', 'g', 'b']):
+            tk.Label(self.master, text=f"shift_{color}").grid(row=i, column=0, padx=5, pady=2)
+            shift_entry = tk.Scale(self.master, from_=-100, to=100, orient=tk.HORIZONTAL, command=self.on_change_callback)
+            shift_entry.set(0)
+            shift_entry.grid(row=i, column=1, padx=5, pady=2)
+            self.param_entries[f'shift_{color}'] = shift_entry
+
+            tk.Label(self.master, text=f"axis_{color}").grid(row=i, column=2, padx=5, pady=2)
+            axis_entry = ttk.Combobox(self.master, values=['horizontal', 'vertical'])
+            axis_entry.set('horizontal')
+            axis_entry.grid(row=i, column=3, padx=5, pady=2)
+            axis_entry.bind('<<ComboboxSelected>>', self.on_change_callback)
+            self.param_entries[f'axis_{color}'] = axis_entry
+
+    def create_pixel_sort_params(self):
+        tk.Label(self.master, text="Threshold").grid(row=0, column=0, padx=5, pady=2)
+        threshold_entry = tk.Scale(self.master, from_=0, to=255, orient=tk.HORIZONTAL, command=self.on_change_callback)
+        threshold_entry.set(128)
+        threshold_entry.grid(row=0, column=1, padx=5, pady=2)
+        self.param_entries['threshold'] = threshold_entry
+
+        tk.Label(self.master, text="Sorting Function").grid(row=1, column=0, padx=5, pady=2)
+        sorting_function_entry = ttk.Combobox(self.master, values=['intensity', 'hue', 'saturation'])
+        sorting_function_entry.set('intensity')
+        sorting_function_entry.grid(row=1, column=1, padx=5, pady=2)
+        sorting_function_entry.bind('<<ComboboxSelected>>', self.on_change_callback)
+        self.param_entries['sorting_function'] = sorting_function_entry
+
+        tk.Label(self.master, text="Direction").grid(row=2, column=0, padx=5, pady=2)
+        direction_entry = ttk.Combobox(self.master, values=['horizontal', 'vertical'])
+        direction_entry.set('horizontal')
+        direction_entry.grid(row=2, column=1, padx=5, pady=2)
+        direction_entry.bind('<<ComboboxSelected>>', self.on_change_callback)
+        self.param_entries['direction'] = direction_entry
+
+    def create_wave_distortion_params(self):
+        tk.Label(self.master, text="Waveform").grid(row=0, column=0, padx=5, pady=2)
+        waveform_entry = ttk.Combobox(self.master, values=['sine', 'triangle', 'square', 'sawtooth', 'pulse'])
+        waveform_entry.set('sine')
+        waveform_entry.grid(row=0, column=1, padx=5, pady=2)
+        waveform_entry.bind('<<ComboboxSelected>>', self.on_change_callback)
+        self.param_entries['waveform'] = waveform_entry
+
+        tk.Label(self.master, text="Amplitude").grid(row=1, column=0, padx=5, pady=2)
+        amplitude_entry = tk.Scale(self.master, from_=0, to=100, orient=tk.HORIZONTAL, command=self.on_change_callback)
+        amplitude_entry.set(10)
+        amplitude_entry.grid(row=1, column=1, padx=5, pady=2)
+        self.param_entries['amplitude'] = amplitude_entry
+
+        tk.Label(self.master, text="Frequency").grid(row=2, column=0, padx=5, pady=2)
+        frequency_entry = tk.Scale(self.master, from_=1, to=100, orient=tk.HORIZONTAL, command=self.on_change_callback)
+        frequency_entry.set(5)
+        frequency_entry.grid(row=2, column=1, padx=5, pady=2)
+        self.param_entries['frequency'] = frequency_entry
+
+        tk.Label(self.master, text="Phase").grid(row=3, column=0, padx=5, pady=2)
+        phase_entry = tk.Scale(self.master, from_=0, to=360, orient=tk.HORIZONTAL, command=self.on_change_callback)
+        phase_entry.set(0)
+        phase_entry.grid(row=3, column=1, padx=5, pady=2)
+        self.param_entries['phase'] = phase_entry
+
+        tk.Label(self.master, text="Direction").grid(row=4, column=0, padx=5, pady=2)
+        direction_entry = ttk.Combobox(self.master, values=['horizontal', 'vertical'])
+        direction_entry.set('horizontal')
+        direction_entry.grid(row=4, column=1, padx=5, pady=2)
+        direction_entry.bind('<<ComboboxSelected>>', self.on_change_callback)
+        self.param_entries['direction'] = direction_entry
+
+    def create_color_quantization_params(self):
+        tk.Label(self.master, text="Number of Colors").grid(row=0, column=0, padx=5, pady=2)
+        num_colors_entry = tk.Scale(self.master, from_=2, to=32, orient=tk.HORIZONTAL, command=self.on_change_callback)
+        num_colors_entry.set(8)
+        num_colors_entry.grid(row=0, column=1, padx=5, pady=2)
+        self.param_entries['num_colors'] = num_colors_entry
+
+        tk.Label(self.master, text="Dither Amount").grid(row=1, column=0, padx=5, pady=2)
+        dither_amount_entry = tk.Scale(self.master, from_=0, to=1, resolution=0.01, orient=tk.HORIZONTAL, command=self.on_change_callback)
+        dither_amount_entry.set(0.5)
+        dither_amount_entry.grid(row=1, column=1, padx=5, pady=2)
+        self.param_entries['dither_amount'] = dither_amount_entry
+
+        tk.Label(self.master, text="Dither Mode").grid(row=2, column=0, padx=5, pady=2)
+        dither_mode_entry = ttk.Combobox(self.master, values=['none', 'random', 'ordered_5x3', 'ordered_4x1', 'ordered_8x8'])
+        dither_mode_entry.set('none')
+        dither_mode_entry.grid(row=2, column=1, padx=5, pady=2)
+        dither_mode_entry.bind('<<ComboboxSelected>>', self.on_change_callback)
+        self.param_entries['dither_mode'] = dither_mode_entry
+
+        tk.Label(self.master, text="Bit Reduction").grid(row=3, column=0, padx=5, pady=2)
+        bit_reduction_entry = tk.Scale(self.master, from_=1, to=8, orient=tk.HORIZONTAL, command=self.on_change_callback)
+        bit_reduction_entry.set(8)
+        bit_reduction_entry.grid(row=3, column=1, padx=5, pady=2)
+        self.param_entries['bit_reduction'] = bit_reduction_entry
+
+    def create_default_params(self, params):
+        for i, param in enumerate(params):
+            tk.Label(self.master, text=param).grid(row=i, column=0, padx=5, pady=2, sticky='e')
+            entry = tk.Entry(self.master)
+            entry.grid(row=i, column=1, padx=5, pady=2, sticky='w')
+            self.param_entries[param] = entry
+
+    def get_params(self):
+        return {param: entry.get() if not isinstance(entry, tk.Checkbutton) else entry.var.get()
+                for param, entry in self.param_entries.items()}
