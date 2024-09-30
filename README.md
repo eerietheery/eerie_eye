@@ -4,7 +4,7 @@ Got lazy, here's an AI's readme for the app:
 <p align="center">
   Click to download Windows executable:<a href="https://github.com/eerietheery/eerie_eye/releases/download/main/eerieEye.exe">👁️</a>
 </p>
-<img align-content="center" src="https://iili.io/dtbWfcv.png">
+<img align-content="center" src="https://imgur.com/20b1c488-2233-42bf-ae9e-3d419d3127da">
 ## User Documentation
 
 ### Introduction
