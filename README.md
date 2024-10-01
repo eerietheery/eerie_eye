@@ -6,7 +6,7 @@ Got lazy, here's an AI's readme for the app:
 </p>
 <img align-content="center" src="https://i.imgur.com/Sl6EcjK.png">
 ### Introduction <br/>
-eerieEye is a powerful image editing application designed for creating glitch art and applying various effects to images. This tool allows users to manipulate images in real-time, providing a unique and interactive experience for digital artists and enthusiasts.
+eerieEye is an image editing application designed for creating glitch art and applying various effects to images. This tool allows users to manipulate images in real-time.
 
 ### Features
 
