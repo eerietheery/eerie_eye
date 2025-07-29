@@ -1,10 +1,6 @@
-make sure 
-
-check waveform canvas drag and shift. 
-
-pixel sort by rotation
 
 tkinter skin https://github.com/rdbende/Sun-Valley-ttk-theme
 
 Verify effect stability
 
+    

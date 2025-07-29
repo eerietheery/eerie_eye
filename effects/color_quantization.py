@@ -93,7 +93,7 @@ def process_in_chunks(img_array, num_colors, dither_amount, dither_mode, chunk_s
                             chunk_selections.append((chunk_start, chunk_end, channel))
             
             result[y:y_end, x:x_end, :] = process_quantization(
-                chunk, num_colors, dither_amount, dither_mode, chunk_selections, color_space
+                chunk, num_colors, dither_amount, dither_mode, chunk_selections
             )
     
     return result

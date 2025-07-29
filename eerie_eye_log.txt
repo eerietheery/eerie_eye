@@ -1,0 +1,350 @@
+
+2025-07-27 20:19:02 - INFO - Effect cache cleared.
+2025-07-27 20:19:04 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 90.0, 'sort_by': 'brightness', 'lower_bound': 100.0, 'upper_bound': 200.0, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:04 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:05 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:06 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 108.0, 'sort_by': 'brightness', 'lower_bound': 100.0, 'upper_bound': 200.0, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:06 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:07 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:09 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 100.0, 'upper_bound': 183.67132867132867, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:09 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:09 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:10 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 100.0, 'upper_bound': 148.25581395348837, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:10 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:10 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:11 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 100.0, 'upper_bound': 189.7674418604651, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:11 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:11 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:12 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 100.0, 'upper_bound': 67.2093023255814, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:12 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:12 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:13 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 100.0, 'upper_bound': 98.83720930232559, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:13 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:14 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:15 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 114.75, 'upper_bound': 106.74418604651163, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:15 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:15 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:16 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 171.85000000000002, 'upper_bound': 106.74418604651163, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:16 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:16 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:16 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 174.85000000000002, 'upper_bound': 106.74418604651163, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:16 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:17 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:17 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 168.3, 'upper_bound': 106.74418604651163, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:17 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:17 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:19 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 14.825581395348838, 'upper_bound': 129.3916083916084, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:19 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:19 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:20 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 14.825581395348838, 'upper_bound': 131.95804195804197, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:20 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:20 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:21 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 14.825581395348838, 'upper_bound': 255.0, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:21 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:21 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:22 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 43.35, 'upper_bound': 255.0, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:22 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:23 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:23 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 43.35, 'upper_bound': 255.0, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:23 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:19:23 - INFO - No new effects to apply, returning cached image.
+2025-07-27 20:19:23 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 5.930232558139535, 'upper_bound': 255.0, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:23 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:23 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:25 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 0.0, 'upper_bound': 238.95104895104896, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:25 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:25 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:26 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 0.0, 'upper_bound': 217.44186046511626, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:26 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:26 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:26 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 0.0, 'upper_bound': 187.23776223776224, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:26 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:27 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:27 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 0.0, 'upper_bound': 158.7062937062937, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:27 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:27 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:28 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 22.95, 'upper_bound': 154.1860465116279, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:28 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:28 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:29 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 85.7, 'upper_bound': 154.1860465116279, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:29 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:30 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:30 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 109.70930232558139, 'upper_bound': 154.1860465116279, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:30 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:30 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:31 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 133.6, 'upper_bound': 154.1860465116279, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:31 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:31 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:32 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 139.36046511627907, 'upper_bound': 154.1860465116279, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:32 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:32 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:33 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 142.8, 'upper_bound': 154.1860465116279, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:33 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:34 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:34 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 103.55, 'upper_bound': 154.1860465116279, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:34 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:35 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:36 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 99.45, 'upper_bound': 154.1860465116279, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:36 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:36 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:37 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 35.7, 'upper_bound': 154.1860465116279, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:37 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:37 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:38 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 20.755813953488374, 'upper_bound': 154.1860465116279, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:38 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:38 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:42 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 0.0, 'upper_bound': 154.1860465116279, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:19:42 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:43 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:43 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 0.0, 'upper_bound': 154.1860465116279, 'randomness': 0.03, 'reverse': 'False'}
+2025-07-27 20:19:43 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:47 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:48 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 171.62790697674419, 'sort_by': 'brightness', 'lower_bound': 106.74418604651163, 'upper_bound': 154.1860465116279, 'randomness': 0.03, 'reverse': 'False'}
+2025-07-27 20:19:48 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:48 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:50 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 223.2, 'sort_by': 'brightness', 'lower_bound': 106.74418604651163, 'upper_bound': 154.1860465116279, 'randomness': 0.03, 'reverse': 'False'}
+2025-07-27 20:19:50 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:51 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:52 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 133.95348837209303, 'sort_by': 'brightness', 'lower_bound': 106.74418604651163, 'upper_bound': 154.1860465116279, 'randomness': 0.03, 'reverse': 'False'}
+2025-07-27 20:19:52 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:52 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:52 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 117.2093023255814, 'sort_by': 'brightness', 'lower_bound': 124.53488372093022, 'upper_bound': 154.1860465116279, 'randomness': 0.03, 'reverse': 'False'}
+2025-07-27 20:19:52 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:53 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:54 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 117.2093023255814, 'sort_by': 'brightness', 'lower_bound': 85.98837209302326, 'upper_bound': 154.1860465116279, 'randomness': 0.03, 'reverse': 'False'}
+2025-07-27 20:19:54 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:55 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:55 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 117.2093023255814, 'sort_by': 'brightness', 'lower_bound': 85.98837209302326, 'upper_bound': 154.1860465116279, 'randomness': 0.04, 'reverse': 'False'}
+2025-07-27 20:19:55 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:19:55 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:19:58 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 117.2093023255814, 'sort_by': 'brightness', 'lower_bound': 85.98837209302326, 'upper_bound': 151.57342657342656, 'randomness': 0.6046511627906976, 'reverse': 'False'}
+2025-07-27 20:19:58 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:20:03 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:20:04 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 117.2093023255814, 'sort_by': 'brightness', 'lower_bound': 201.62790697674419, 'upper_bound': 0.0, 'randomness': 0.59, 'reverse': 'False'}
+2025-07-27 20:20:04 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:20:05 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:20:06 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 117.2093023255814, 'sort_by': 'brightness', 'lower_bound': 243.13953488372093, 'upper_bound': 0.0, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:06 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:20:07 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:20:08 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 117.2093023255814, 'sort_by': 'brightness', 'lower_bound': 226.95000000000002, 'upper_bound': 0.0, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:08 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:20:08 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:20:08 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 117.2093023255814, 'sort_by': 'brightness', 'lower_bound': 103.77906976744185, 'upper_bound': 0.0, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:08 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:20:09 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:20:09 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 117.2093023255814, 'sort_by': 'brightness', 'lower_bound': 112.2, 'upper_bound': 0.0, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:09 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:20:10 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:20:12 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 117.2093023255814, 'sort_by': 'brightness', 'lower_bound': 50.406976744186046, 'upper_bound': 102.79069767441861, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:12 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:20:12 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:20:15 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 140.4, 'sort_by': 'brightness', 'lower_bound': 50.406976744186046, 'upper_bound': 102.79069767441861, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:15 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:20:16 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:20:16 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 260.2, 'sort_by': 'brightness', 'lower_bound': 50.406976744186046, 'upper_bound': 102.79069767441861, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:16 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:20:16 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:20:17 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 241.20000000000002, 'sort_by': 'brightness', 'lower_bound': 50.406976744186046, 'upper_bound': 102.79069767441861, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:17 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:20:18 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:20:18 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 306.0, 'sort_by': 'brightness', 'lower_bound': 50.406976744186046, 'upper_bound': 102.79069767441861, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:18 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:20:19 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:20:19 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 121.3953488372093, 'sort_by': 'brightness', 'lower_bound': 50.406976744186046, 'upper_bound': 102.79069767441861, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:19 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:20:19 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:20:20 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 62.79069767441861, 'sort_by': 'brightness', 'lower_bound': 50.406976744186046, 'upper_bound': 102.79069767441861, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:20 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:20:20 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:20:20 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 4.186046511627907, 'sort_by': 'brightness', 'lower_bound': 50.406976744186046, 'upper_bound': 102.79069767441861, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:20 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:20:21 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:20:21 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 163.25581395348837, 'sort_by': 'brightness', 'lower_bound': 50.406976744186046, 'upper_bound': 102.79069767441861, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:21 - INFO - Cache hit. Starting from effect index 0.
+2025-07-27 20:20:21 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:20:26 - INFO - Effect cache cleared.
+2025-07-27 20:20:26 - INFO - Effect cache cleared.
+2025-07-27 20:20:34 - INFO - Effect cache cleared.
+2025-07-27 20:20:34 - INFO - Effect cache cleared.
+2025-07-27 20:20:39 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 198.00000000000003, 'sort_by': 'brightness', 'lower_bound': 50.406976744186046, 'upper_bound': 102.79069767441861, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:39 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:20:41 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'threshold', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 50.406976744186046, 'upper_bound': 102.79069767441861, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:41 - INFO - Cached result for effect stack of length 1
+2025-07-27 20:20:45 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 50.406976744186046, 'upper_bound': 102.79069767441861, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:45 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:20:45 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:20:48 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 51.0, 'upper_bound': 102.79069767441861, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:48 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:20:48 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:20:48 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 74.12790697674419, 'upper_bound': 102.79069767441861, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:48 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:20:48 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:20:49 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 133.43023255813955, 'upper_bound': 102.79069767441861, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:49 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:20:49 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:20:50 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 8.895348837209303, 'upper_bound': 102.79069767441861, 'randomness': 0.0, 'reverse': 'False'}
+2025-07-27 20:20:50 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:20:50 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:20:50 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 8.895348837209303, 'upper_bound': 102.79069767441861, 'randomness': 0.08, 'reverse': 'False'}
+2025-07-27 20:20:50 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:20:51 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:20:51 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 8.895348837209303, 'upper_bound': 102.79069767441861, 'randomness': 0.08139534883720931, 'reverse': 'False'}
+2025-07-27 20:20:51 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:20:51 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:20:52 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 8.895348837209303, 'upper_bound': 99.86013986013987, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:20:52 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:20:53 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:20:53 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 8.895348837209303, 'upper_bound': 106.993006993007, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:20:53 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:20:54 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:20:54 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 8.895348837209303, 'upper_bound': 183.83720930232556, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:20:54 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:20:54 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:20:55 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 8.895348837209303, 'upper_bound': 240.73426573426573, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:20:55 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:20:55 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:20:55 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 8.895348837209303, 'upper_bound': 171.97674418604652, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:20:55 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:20:56 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:20:56 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 8.895348837209303, 'upper_bound': 112.67441860465117, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:20:56 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:20:56 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:20:56 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 8.895348837209303, 'upper_bound': 47.44186046511628, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:20:56 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:20:57 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:02 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 50.406976744186046, 'upper_bound': 31.627906976744185, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:02 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:02 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:03 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 112.67441860465117, 'upper_bound': 31.627906976744185, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:03 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:03 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:03 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 127.5, 'upper_bound': 31.627906976744185, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:03 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:04 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:04 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 177.90697674418604, 'upper_bound': 31.627906976744185, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:04 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:04 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:04 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 207.5581395348837, 'upper_bound': 31.627906976744185, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:04 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:05 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:05 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 216.453488372093, 'upper_bound': 31.627906976744185, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:05 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:05 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:05 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 243.13953488372093, 'upper_bound': 31.627906976744185, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:05 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:06 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:06 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 246.1046511627907, 'upper_bound': 31.627906976744185, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:06 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:06 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:06 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 252.03488372093022, 'upper_bound': 31.627906976744185, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:06 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:07 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:09 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 255.0, 'upper_bound': 50.71328671328671, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:09 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:09 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:09 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 255.0, 'upper_bound': 48.71328671328671, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:09 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:10 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:10 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 255.0, 'upper_bound': 44.71328671328671, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:10 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:10 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:10 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 255.0, 'upper_bound': 40.71328671328671, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:10 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:11 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:11 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 255.0, 'upper_bound': 36.71328671328671, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:11 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:11 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:11 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 255.0, 'upper_bound': 32.71328671328671, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:11 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:12 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:12 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 255.0, 'upper_bound': 28.713286713286713, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:12 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:12 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:12 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 234.4186046511628, 'sort_by': 'brightness', 'lower_bound': 255.0, 'upper_bound': 24.713286713286713, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:12 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:13 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:14 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 219.6, 'sort_by': 'brightness', 'lower_bound': 255.0, 'upper_bound': 24.713286713286713, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:14 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:15 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:15 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 125.58139534883722, 'sort_by': 'brightness', 'lower_bound': 255.0, 'upper_bound': 24.713286713286713, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:15 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:15 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:16 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 92.09302325581396, 'sort_by': 'brightness', 'lower_bound': 255.0, 'upper_bound': 24.713286713286713, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:16 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:16 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:16 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 96.27906976744185, 'sort_by': 'brightness', 'lower_bound': 255.0, 'upper_bound': 24.713286713286713, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:16 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:17 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:17 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 121.3953488372093, 'sort_by': 'brightness', 'lower_bound': 255.0, 'upper_bound': 24.713286713286713, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:17 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:17 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:17 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 129.7674418604651, 'sort_by': 'brightness', 'lower_bound': 255.0, 'upper_bound': 24.713286713286713, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:17 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:17 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:20 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 138.13953488372093, 'sort_by': 'brightness', 'lower_bound': 252.45, 'upper_bound': 24.713286713286713, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:20 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:20 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:21 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 138.13953488372093, 'sort_by': 'brightness', 'lower_bound': 224.4, 'upper_bound': 24.713286713286713, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:21 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:21 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:21 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 138.13953488372093, 'sort_by': 'brightness', 'lower_bound': 186.80232558139534, 'upper_bound': 24.713286713286713, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:21 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:22 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:22 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 138.13953488372093, 'sort_by': 'brightness', 'lower_bound': 171.97674418604652, 'upper_bound': 24.713286713286713, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:22 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:23 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:24 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 138.13953488372093, 'sort_by': 'brightness', 'lower_bound': 255.0, 'upper_bound': 24.713286713286713, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:24 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:24 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:25 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 138.13953488372093, 'sort_by': 'brightness', 'lower_bound': 231.27906976744185, 'upper_bound': 24.713286713286713, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:25 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:25 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:26 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 138.13953488372093, 'sort_by': 'brightness', 'lower_bound': 234.24418604651163, 'upper_bound': 24.713286713286713, 'randomness': 0.023255813953488372, 'reverse': 'False'}
+2025-07-27 20:21:26 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:27 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:44 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 138.13953488372093, 'sort_by': 'brightness', 'lower_bound': 234.24418604651163, 'upper_bound': 24.713286713286713, 'randomness': 0.023255813953488372, 'reverse': 'True'}
+2025-07-27 20:21:44 - INFO - Cache hit. Starting from effect index 1.
+2025-07-27 20:21:44 - INFO - Cached result for effect stack of length 2
+2025-07-27 20:21:44 - INFO - [EffectFrame] get_effect_params returns: {'mode': 'edge', 'direction_angle': 138.13953488372093, 'sort_by': 'brightness', 'lower_bound': 234.24418604651163, 'upper_bound': 24.713286713286713, 'randomness': 0.023255813953488372, 'reverse': 'True'}
+2025-07-27 20:21:44 - INFO - Cache hit. Starting from effect index 2.
+2025-07-27 20:21:45 - INFO - Cached result for effect stack of length 3
+2025-07-27 20:21:48 - INFO - [EffectFrame] get_effect_params returns: {'echo_intensity': 0.5, 'echo_distance': 20.0, 'echo_count': 3.0, 'echo_direction': 'horizontal'}
+2025-07-27 20:21:48 - INFO - Cache hit. Starting from effect index 3.
+2025-07-27 20:21:48 - INFO - Cached result for effect stack of length 4
+2025-07-27 20:21:49 - INFO - [EffectFrame] get_effect_params returns: {'echo_intensity': 0.487, 'echo_distance': 20.0, 'echo_count': 3.0, 'echo_direction': 'horizontal'}
+2025-07-27 20:21:49 - INFO - Cache hit. Starting from effect index 3.
+2025-07-27 20:21:50 - INFO - Cached result for effect stack of length 4
+2025-07-27 20:21:50 - INFO - [EffectFrame] get_effect_params returns: {'echo_intensity': 0.3825581395348837, 'echo_distance': 20.0, 'echo_count': 3.0, 'echo_direction': 'horizontal'}
+2025-07-27 20:21:50 - INFO - Cache hit. Starting from effect index 3.
+2025-07-27 20:21:50 - INFO - Cached result for effect stack of length 4
+2025-07-27 20:21:50 - INFO - [EffectFrame] get_effect_params returns: {'echo_intensity': 0.13139534883720932, 'echo_distance': 20.0, 'echo_count': 3.0, 'echo_direction': 'horizontal'}
+2025-07-27 20:21:50 - INFO - Cache hit. Starting from effect index 3.
+2025-07-27 20:21:50 - INFO - Cached result for effect stack of length 4
+2025-07-27 20:21:50 - INFO - [EffectFrame] get_effect_params returns: {'echo_intensity': 0.1, 'echo_distance': 20.0, 'echo_count': 3.0, 'echo_direction': 'horizontal'}
+2025-07-27 20:21:50 - INFO - Cache hit. Starting from effect index 3.
+2025-07-27 20:21:50 - INFO - Cached result for effect stack of length 4
+2025-07-27 20:21:51 - INFO - [EffectFrame] get_effect_params returns: {'echo_intensity': 0.1, 'echo_distance': 20.0, 'echo_count': 3.0, 'echo_direction': 'horizontal'}
+2025-07-27 20:21:51 - INFO - Cache hit. Starting from effect index 4.
+2025-07-27 20:21:51 - INFO - No new effects to apply, returning cached image.
+2025-07-27 20:21:51 - INFO - [EffectFrame] get_effect_params returns: {'echo_intensity': 0.1, 'echo_distance': 20.0, 'echo_count': 3.0, 'echo_direction': 'horizontal'}
+2025-07-27 20:21:51 - INFO - Cache hit. Starting from effect index 4.
+2025-07-27 20:21:51 - INFO - No new effects to apply, returning cached image.
+2025-07-27 20:21:51 - INFO - [EffectFrame] get_effect_params returns: {'echo_intensity': 0.1, 'echo_distance': 20.0, 'echo_count': 3.0, 'echo_direction': 'horizontal'}
+2025-07-27 20:21:51 - INFO - Cache hit. Starting from effect index 4.
+2025-07-27 20:21:51 - INFO - No new effects to apply, returning cached image.
+2025-07-27 20:21:51 - INFO - [EffectFrame] get_effect_params returns: {'echo_intensity': 0.1941860465116279, 'echo_distance': 20.0, 'echo_count': 3.0, 'echo_direction': 'horizontal'}
+2025-07-27 20:21:51 - INFO - Cache hit. Starting from effect index 3.
+2025-07-27 20:21:51 - INFO - Cached result for effect stack of length 4
+2025-07-27 20:21:52 - INFO - [EffectFrame] get_effect_params returns: {'echo_intensity': 0.3825581395348837, 'echo_distance': 20.0, 'echo_count': 3.0, 'echo_direction': 'horizontal'}
+2025-07-27 20:21:52 - INFO - Cache hit. Starting from effect index 4.
+2025-07-27 20:21:52 - INFO - No new effects to apply, returning cached image.
+2025-07-27 20:21:52 - INFO - [EffectFrame] get_effect_params returns: {'echo_intensity': 0.42441860465116277, 'echo_distance': 20.0, 'echo_count': 3.0, 'echo_direction': 'horizontal'}
+2025-07-27 20:21:52 - INFO - Cache hit. Starting from effect index 3.
+2025-07-27 20:21:52 - INFO - Cached result for effect stack of length 4
+2025-07-27 20:21:52 - INFO - [EffectFrame] get_effect_params returns: {'echo_intensity': 0.5081395348837209, 'echo_distance': 20.0, 'echo_count': 3.0, 'echo_direction': 'horizontal'}
+2025-07-27 20:21:52 - INFO - Cache hit. Starting from effect index 3.
+2025-07-27 20:21:53 - INFO - Cached result for effect stack of length 4
+2025-07-27 20:21:53 - INFO - [EffectFrame] get_effect_params returns: {'echo_intensity': 0.5604651162790698, 'echo_distance': 20.0, 'echo_count': 3.0, 'echo_direction': 'horizontal'}
+2025-07-27 20:21:53 - INFO - Cache hit. Starting from effect index 3.
+2025-07-27 20:21:53 - INFO - Cached result for effect stack of length 4
+2025-07-27 20:26:29 - INFO - Application closed

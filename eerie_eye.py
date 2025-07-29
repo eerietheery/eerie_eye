@@ -6,6 +6,7 @@ from ui.image_canvas import ImageCanvas
 from ui.effect_frame import EffectFrame
 from ui.waveform_canvas import WaveformCanvas
 from app_logic import AppLogic
+from effects.effect_manager import EffectManager
 import queue
 import logging
 
@@ -151,21 +152,7 @@ class EerieEye:
         selections = self.waveform_canvas.get_selections()
         
         try:
-            # This is the crucial part: we add the current previewed effect 
-            # to the permanent list of applied effects.
-            effect_function = EffectManager.get_effect_function(effect_type)
-            if effect_function is None:
-                raise ValueError(f"Effect '{effect_type}' not found.")
-            
-            self.app_logic.undo_stack.append(self.app_logic.current_image.copy())
-            self.app_logic.applied_effects.append((effect_function, params, selections))
-            
-            # Now, we re-apply all effects, including the one we just added.
-            self.app_logic.optimizer.thread_pool.submit(
-                self.app_logic._worker_apply_effects,
-                self.app_logic.applied_effects,
-                is_preview=False
-            )
+            self.app_logic.apply_glitch(effect_type, params, selections)
         except ValueError as e:
             messagebox.showwarning("Warning", str(e))
 

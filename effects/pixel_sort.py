@@ -3,172 +3,156 @@ import numpy as np
 from PIL import Image
 
 PARAMS_META = [
-    {'name': 'threshold', 'type': 'scale', 'range': (0, 255), 'default': 128, 'resolution': 1},
-    {'name': 'direction_angle', 'type': 'scale', 'range': (0, 360), 'default': 0, 'resolution': 1},  # Changed from combobox to scale
-    {'name': 'sort_by', 'type': 'combobox', 'values': ['brightness', 'hue', 'saturation', 'red', 'green', 'blue'], 'default': 'brightness'},
-    {'name': 'reverse', 'type': 'checkbox', 'default': False}
+    {'name': 'mode', 'type': 'combobox', 'values': ['threshold', 'interval', 'edge', 'random'], 'default': 'threshold', 'label': 'Sorting Mode'},
+    {'name': 'direction_angle', 'type': 'scale', 'range': (0, 360), 'default': 90, 'resolution': 1, 'label': 'Direction Angle'},
+    {'name': 'sort_by', 'type': 'combobox', 'values': ['brightness', 'hue', 'saturation', 'red', 'green', 'blue'], 'default': 'brightness', 'label': 'Sort By'},
+    {'name': 'lower_bound', 'type': 'scale', 'range': (0, 255), 'default': 100, 'resolution': 1, 'label': 'Lower Bound'},
+    {'name': 'upper_bound', 'type': 'scale', 'range': (0, 255), 'default': 200, 'resolution': 1, 'label': 'Upper Bound'},
+    {'name': 'randomness', 'type': 'scale', 'range': (0, 1), 'default': 0.0, 'resolution': 0.01, 'label': 'Randomness'},
+    {'name': 'reverse', 'type': 'checkbox', 'default': False, 'label': 'Reverse Sort'}
 ]
 
 def apply_pixel_sort(image, params, selections=None):
     """
-    Sorts pixels based on threshold and direction angle.
+    Sorts pixels using various modes, directions, and criteria.
     """
-    threshold = int(params.get('threshold', 128))
-    direction_angle = int(params.get('direction_angle', 0))  # 0-360 degrees
+    # Get parameters
+    mode = params.get('mode', 'threshold')
+    direction_angle = int(params.get('direction_angle', 90))
     sort_by = params.get('sort_by', 'brightness')
-    reverse = params.get('reverse', False)
-    
+    lower_bound = int(params.get('lower_bound', 100))
+    upper_bound = int(params.get('upper_bound', 200))
+    randomness = float(params.get('randomness', 0.0))
+    reverse = bool(params.get('reverse', False))
+
     img_array = np.array(image)
-    height, width = img_array.shape[:2]
     
-    # Convert angle to direction vector
-    angle_rad = np.radians(direction_angle)
-    dx = np.cos(angle_rad)
-    dy = np.sin(angle_rad)
+    # Rotate image to make sorting direction always horizontal
+    rotated_array = np.array(Image.fromarray(img_array).rotate(-direction_angle, resample=Image.Resampling.NEAREST, expand=True))
     
-    # Determine primary sorting direction based on angle
-    if abs(dx) > abs(dy):
-        # Primarily horizontal sorting
-        primary_axis = 'horizontal'
-        angle_factor = abs(dx)
-    else:
-        # Primarily vertical sorting
-        primary_axis = 'vertical'
-        angle_factor = abs(dy)
-    
-    def get_sort_key(pixel):
-        """Get the value to sort by."""
-        # Handle different pixel formats
-        if len(pixel.shape) == 0:  # Single value
-            return float(pixel)
-        elif len(pixel.shape) == 1 and len(pixel) == 1:  # Grayscale
-            return float(pixel[0])
-        elif len(pixel.shape) == 1 and len(pixel) >= 3:  # RGB pixel
-            r, g, b = pixel[0], pixel[1], pixel[2]
-        elif len(pixel.shape) == 2 and pixel.shape[1] >= 3:  # 2D array with RGB
-            r, g, b = pixel[0, 0], pixel[0, 1], pixel[0, 2]
-        else:
-            # Fallback for unexpected formats - treat as grayscale
-            return float(pixel.flatten()[0])
-        
-        if sort_by == 'brightness':
-            return 0.299 * r + 0.587 * g + 0.114 * b
-        elif sort_by == 'red':
-            return r
-        elif sort_by == 'green':
-            return g
-        elif sort_by == 'blue':
-            return b
-        elif sort_by == 'hue':
-            max_val = max(r, g, b)
-            min_val = min(r, g, b)
-            diff = max_val - min_val
-            if diff == 0:
-                return 0
-            if max_val == r:
-                return (60 * ((g - b) / diff) + 360) % 360
-            elif max_val == g:
-                return (60 * ((b - r) / diff) + 120) % 360
-            else:
-                return (60 * ((r - g) / diff) + 240) % 360
-        elif sort_by == 'saturation':
-            max_val = max(r, g, b)
-            min_val = min(r, g, b)
-            if max_val == 0:
-                return 0
-            return (max_val - min_val) / max_val
-        return 0.299 * r + 0.587 * g + 0.114 * b  # Default to brightness
+    # Process the rotated image
+    processed_array = process_rows(rotated_array, mode, sort_by, lower_bound, upper_bound, randomness, reverse)
 
-    def pixelort_sort_line(line, threshold, reverse_sort):
-        """Pixelort-style: find start/end points and sort segments between them."""
-        # Compute key for each pixel
-        keys = np.array([get_sort_key(p) for p in line])
-        mask = keys > threshold
-        n = len(line)
-        result = line.copy()
-        i = 0
-        while i < n:
-            # Find start of segment
-            while i < n and not mask[i]:
-                i += 1
-            start = i
-            # Find end of segment
-            while i < n and mask[i]:
-                i += 1
-            end = i
-            # Sort segment if length > 1
-            if end - start > 1:
-                segment = result[start:end]
-                sorted_segment = sorted(segment, key=get_sort_key, reverse=reverse_sort)
-                result[start:end] = sorted_segment
-        return result
+    # Rotate back to the original orientation
+    final_img = Image.fromarray(processed_array).rotate(direction_angle, resample=Image.Resampling.NEAREST, expand=True)
     
-    def sort_line(line, threshold, reverse_sort):
-        """Sort pixels in a line based on threshold."""
-        if len(line) == 0:
-            return line
-        
-        # Find segments to sort
-        segments = []
-        current_segment = []
-        
-        for i, pixel in enumerate(line):
-            # Ensure pixel is in the right format for get_sort_key
-            if len(line.shape) == 1:  # Grayscale line
-                pixel_for_key = np.array([pixel])
-            else:  # Color line
-                pixel_for_key = pixel
-            
-            brightness = get_sort_key(pixel_for_key)
-            
-            if brightness > threshold:
-                current_segment.append((i, pixel))
-            else:
-                if current_segment:
-                    segments.append(current_segment)
-                    current_segment = []
-        
-        if current_segment:
-            segments.append(current_segment)
-        
-        # Sort each segment
-        result = line.copy()
-        for segment in segments:
-            if len(segment) > 1:
-                indices, pixels = zip(*segment)
-                # Handle different pixel formats when sorting
-                if len(line.shape) == 1:  # Grayscale
-                    sorted_pixels = sorted(pixels, key=lambda p: get_sort_key(np.array([p])), reverse=reverse_sort)
-                else:  # Color
-                    sorted_pixels = sorted(pixels, key=lambda p: get_sort_key(p), reverse=reverse_sort)
-                
-                for i, pixel in zip(indices, sorted_pixels):
-                    result[i] = pixel
-        
-        return result
+    # Crop to original dimensions
+    orig_w, orig_h = image.size
+    final_w, final_h = final_img.size
+    left = (final_w - orig_w) // 2
+    top = (final_h - orig_h) // 2
+    right = left + orig_w
+    bottom = top + orig_h
     
-    # Apply Pixelort-style sorting based on angle
-    result = img_array.copy()
-    if primary_axis == 'horizontal':
-        for y in range(height):
-            sorted_row = pixelort_sort_line(result[y, :], threshold, reverse)
-            result[y, :] = sorted_row
-    else:
-        for x in range(width):
-            sorted_col = pixelort_sort_line(result[:, x], threshold, reverse)
-            result[:, x] = sorted_col
+    final_array = np.array(final_img.crop((left, top, right, bottom)))
 
+    # If selections are provided, mask the result
     if selections:
-        # Apply to selected regions only
-        for start, end, channel in selections:
-            if len(img_array.shape) == 3:  # Color image
-                region = img_array[:, start:end, :]
-                region_result = result[:, start:end, :]
-                img_array[:, start:end, :] = region_result
-            else:  # Grayscale
-                region = img_array[:, start:end]
-                region_result = result[:, start:end]
-                img_array[:, start:end] = region_result
-        return Image.fromarray(img_array)
+        mask = np.zeros_like(img_array, dtype=bool)
+        for start, end, _ in selections:
+            mask[:, start:end, :] = True
+        
+        # Blend the original and sorted arrays based on the mask
+        final_array = np.where(mask, final_array, img_array)
+
+    return Image.fromarray(final_array)
+
+def get_sort_key_vectorized(pixels, sort_by, randomness):
+    """Vectorized function to get the sort key for an array of pixels."""
+    if pixels.ndim == 1: # Grayscale or single channel
+        keys = pixels.astype(np.float32)
     else:
-        return Image.fromarray(result)
+        r, g, b = pixels[:, 0], pixels[:, 1], pixels[:, 2]
+        if sort_by == 'brightness':
+            keys = 0.299 * r + 0.587 * g + 0.114 * b
+        elif sort_by == 'red':
+            keys = r
+        elif sort_by == 'green':
+            keys = g
+        elif sort_by == 'blue':
+            keys = b
+        elif sort_by == 'hue':
+            max_val = np.maximum(np.maximum(r, g), b)
+            min_val = np.minimum(np.minimum(r, g), b)
+            diff = max_val - min_val
+            keys = np.zeros_like(max_val, dtype=np.float32)
+            
+            # Avoid division by zero
+            mask_r = (max_val == r) & (diff != 0)
+            keys[mask_r] = (60 * ((g[mask_r] - b[mask_r]) / diff[mask_r]) + 360) % 360
+            mask_g = (max_val == g) & (diff != 0)
+            keys[mask_g] = (60 * ((b[mask_g] - r[mask_g]) / diff[mask_g]) + 120) % 360
+            mask_b = (max_val == b) & (diff != 0)
+            keys[mask_b] = (60 * ((r[mask_b] - g[mask_b]) / diff[mask_b]) + 240) % 360
+        elif sort_by == 'saturation':
+            max_val = np.maximum(np.maximum(r, g), b)
+            min_val = np.minimum(np.minimum(r, g), b)
+            # Avoid division by zero
+            keys = np.divide(max_val - min_val, max_val, out=np.zeros_like(max_val, dtype=np.float32), where=max_val!=0)
+        else: # Default to brightness
+            keys = 0.299 * r + 0.587 * g + 0.114 * b
+
+    if randomness > 0:
+        noise = np.random.uniform(-255 * randomness, 255 * randomness, keys.shape)
+        keys += noise
+        
+    return keys
+
+def process_rows(img_array, mode, sort_by, lower, upper, randomness, reverse):
+    """Applies the sorting logic to each row of the image array."""
+    result_array = img_array.copy()
+    for i in range(img_array.shape[0]):
+        result_array[i] = sort_line(result_array[i], mode, sort_by, lower, upper, randomness, reverse)
+    return result_array
+
+def sort_line(line, mode, sort_by, lower, upper, randomness, reverse):
+    """Sorts a single line of pixels based on the selected mode."""
+    if len(line) == 0:
+        return line
+
+    # Get a numeric key for each pixel to determine sorting
+    keys = get_sort_key_vectorized(line, sort_by, randomness)
+    
+    # Determine which pixels to sort based on the mode
+    if mode == 'threshold':
+        mask = keys > lower
+    elif mode == 'interval':
+        mask = (keys > lower) & (keys < upper)
+    elif mode == 'edge':
+        mask = np.zeros_like(keys, dtype=bool)
+        first_match = np.argmax(keys > lower)
+        if keys[first_match] > lower:
+            mask[first_match:] = True
+    else: # 'random' uses the interval mask by default
+        mask = (keys > lower) & (keys < upper)
+
+    # Find contiguous segments of pixels to sort
+    n = len(line)
+    result = line.copy()
+    i = 0
+    while i < n:
+        # Find start of a segment
+        while i < n and not mask[i]:
+            i += 1
+        start = i
+        # Find end of a segment
+        while i < n and mask[i]:
+            i += 1
+        end = i
+        
+        # If a valid segment is found, sort or shuffle it
+        if end > start:
+            segment = result[start:end]
+            if mode == 'random':
+                np.random.shuffle(segment)
+            else:
+                # Sort the segment based on its keys
+                segment_keys = get_sort_key_vectorized(segment, sort_by, 0) # No randomness for the actual sort
+                sorted_indices = np.argsort(segment_keys)
+                if reverse:
+                    sorted_indices = sorted_indices[::-1]
+                segment = segment[sorted_indices]
+            
+            result[start:end] = segment
+            
+    return result

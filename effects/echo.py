@@ -17,8 +17,7 @@ def apply_echo(image, params, selections=None):
     echo_direction = params.get('echo_direction', 'horizontal')
 
     img_array = np.array(image).astype(np.float32)
-    result = img_array.copy()
-
+    
     # Create a mask if selections are provided
     mask = np.zeros(img_array.shape[:2], dtype=bool)
     if selections:
@@ -28,6 +27,8 @@ def apply_echo(image, params, selections=None):
     else:
         mask.fill(True)
 
+    # Create a collection of echoes
+    echoes = []
     for i in range(1, echo_count + 1):
         current_intensity = echo_intensity ** i
         current_distance = i * echo_distance
@@ -40,10 +41,15 @@ def apply_echo(image, params, selections=None):
             shifted[:current_distance, :] = 0
         else:
             raise ValueError("Invalid echo direction.")
+        
+        echoes.append((shifted, current_intensity))
 
-        # Apply the shifted echo only within the selected mask
+    # Blend the echoes with the original image
+    result = img_array.copy()
+    for echo, intensity in echoes:
         for c in range(img_array.shape[2]):
-            result[:,:,c] += shifted[:,:,c] * current_intensity * mask
-
+            alpha = intensity
+            result[:,:,c][mask] = alpha * echo[:,:,c][mask] + (1 - alpha) * result[:,:,c][mask]
+    
     result = np.clip(result, 0, 255).astype(np.uint8)
     return Image.fromarray(result)

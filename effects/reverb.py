@@ -66,59 +66,60 @@ def _apply_reverb_single_channel(channel_data, room_size, pre_delay, reverberanc
     
     # Normalize input
     audio_data = channel_data.astype(np.float32) / 255.0
-    
+    if audio_data.size == 0:
+        return np.zeros_like(channel_data, dtype=np.uint8)
+
     # Calculate reverb parameters
     delay_samples = max(1, int(pre_delay * audio_data.shape[0] / 1000))
     num_echoes = max(3, min(50, int(room_size * 25)))  # More reasonable range
-    
+
     # Pre-calculate decay factors for efficiency
     decay_factors = np.array([
         reverberance ** (i / num_echoes) * ((1 - hf_damping) ** i)
         for i in range(num_echoes)
     ])
-    
+
     # Generate reverb using vectorized operations
     output = np.zeros_like(audio_data)
-    
+
     for i, decay in enumerate(decay_factors):
         if decay < 0.001:  # Skip negligible echoes
             break
-            
         shift_amount = i * delay_samples
         if shift_amount >= audio_data.shape[0]:
             break
-            
         # Create echo with proper boundary handling
         echo = np.zeros_like(audio_data)
         echo[shift_amount:] = audio_data[:-shift_amount] if shift_amount > 0 else audio_data
-        
         # Apply decay and add to output
         output += echo * decay
-    
+
     # Apply tone controls more effectively
     if tone_low != 1.0:
         output *= tone_low
-    
+
     if tone_high != 1.0:
         # High-frequency emphasis using gradient magnitude
         grad_y, grad_x = np.gradient(output)
         grad_magnitude = np.sqrt(grad_y**2 + grad_x**2)
         output += grad_magnitude * (tone_high - 1.0) * 0.5
-    
+
     # Normalize and mix
-    max_val = np.max(np.abs(output))
+    if output.size == 0:
+        return np.zeros_like(channel_data, dtype=np.uint8)
+    max_val = np.max(np.abs(output)) if output.size > 0 else 0
     if max_val > 0:
         output /= max_val
-    
+
     if wet_only:
         result = wet_gain * output
     else:
         result = (dry_gain * audio_data) + (wet_gain * output)
-    
+
     # Apply soft limiting to prevent harsh clipping
     result = np.tanh(result * 0.8) * 1.25
     result = np.clip(result, 0, 1) * 255
-    
+
     return result.astype(np.uint8)
 
 def _apply_reverb_rgb(rgb_data, room_size, pre_delay, reverberance, hf_damping, 

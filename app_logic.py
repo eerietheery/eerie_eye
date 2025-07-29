@@ -118,7 +118,7 @@ class AppLogic:
         Centralized, cache-aware effect pipeline.
         """
         # Find the most recent cached state
-        start_image = self.original_image
+        start_image = self.current_image
         start_index = 0
         
         for i in range(len(effects), -1, -1):

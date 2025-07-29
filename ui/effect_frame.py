@@ -44,10 +44,68 @@ class EffectFrame:
         if effect_type == 'channel_shift':
             self.create_channel_shift_layout(params_meta)
             return
+        
+        # Special case for pixel_sort layout
+        if effect_type == 'pixel_sort':
+            self.create_pixel_sort_layout(params_meta)
+            return
 
         # Generic layout for all other effects
         for i, param_meta in enumerate(params_meta):
             row = i // 2
+            col = (i % 2) * 2
+            
+            label_text = param_meta.get('label', param_meta['name'])
+            tk.Label(self.param_frame, text=label_text).grid(row=row, column=col, padx=5, pady=2, sticky='w')
+            
+            widget = self.create_widget_for_param(param_meta)
+            widget.grid(row=row, column=col + 1, padx=5, pady=2, sticky='ew')
+            
+            self.param_entries[param_meta['name']] = widget
+
+    def create_pixel_sort_layout(self, params_meta):
+        """Creates a special layout for the pixel_sort effect."""
+        # Find the indices of the bound parameters
+        lower_bound_idx = -1
+        upper_bound_idx = -1
+        for i, p in enumerate(params_meta):
+            if p['name'] == 'lower_bound':
+                lower_bound_idx = i
+            elif p['name'] == 'upper_bound':
+                upper_bound_idx = i
+
+        # Create a frame for the bound sliders
+        bounds_frame = tk.Frame(self.param_frame)
+        
+        # Layout for the bound sliders
+        if lower_bound_idx != -1 and upper_bound_idx != -1:
+            # Lower bound
+            lower_meta = params_meta[lower_bound_idx]
+            tk.Label(bounds_frame, text=lower_meta.get('label', lower_meta['name'])).grid(row=0, column=0, padx=5, pady=2, sticky='w')
+            lower_widget = self.create_widget_for_param(lower_meta, master=bounds_frame)
+            lower_widget.grid(row=0, column=1, padx=5, pady=2, sticky='ew')
+            self.param_entries[lower_meta['name']] = lower_widget
+            
+            # Upper bound
+            upper_meta = params_meta[upper_bound_idx]
+            tk.Label(bounds_frame, text=upper_meta.get('label', upper_meta['name'])).grid(row=0, column=2, padx=5, pady=2, sticky='w')
+            upper_widget = self.create_widget_for_param(upper_meta, master=bounds_frame)
+            upper_widget.grid(row=0, column=3, padx=5, pady=2, sticky='ew')
+            self.param_entries[upper_meta['name']] = upper_widget
+
+        # Layout for other parameters
+        other_params = [p for i, p in enumerate(params_meta) if i not in [lower_bound_idx, upper_bound_idx]]
+        
+        # Start other params on a new row
+        current_row = 0
+        
+        # Place the bounds frame first if it was created
+        if lower_bound_idx != -1 and upper_bound_idx != -1:
+            bounds_frame.grid(row=current_row, column=0, columnspan=4, sticky='ew')
+            current_row += 1
+
+        for i, param_meta in enumerate(other_params):
+            row = current_row + (i // 2)
             col = (i % 2) * 2
             
             label_text = param_meta.get('label', param_meta['name'])
@@ -78,33 +136,36 @@ class EffectFrame:
                 axis_widget.grid(row=row, column=3, padx=5, pady=2, sticky='ew')
                 self.param_entries[axis_meta['name']] = axis_widget
 
-    def create_widget_for_param(self, meta):
+    def create_widget_for_param(self, meta, master=None):
         """Creates a UI widget based on its metadata dictionary."""
+        if master is None:
+            master = self.param_frame
+
         widget_type = meta['type']
         default_val = meta['default']
         
         if widget_type == 'scale':
             from_val, to_val = meta['range']
             resolution = meta.get('resolution', -1) # ttk.Scale uses -1 for default resolution
-            scale = ttk.Scale(self.param_frame, from_=from_val, to=to_val, orient=tk.HORIZONTAL, command=self.on_slider_change)
+            scale = ttk.Scale(master, from_=from_val, to=to_val, orient=tk.HORIZONTAL, command=self.on_slider_change)
             scale.set(default_val)
             scale.bind('<Button-1>', self.jump_to_click, add='+')
             return scale
             
         elif widget_type == 'combobox':
-            combo = ttk.Combobox(self.param_frame, values=meta['values'], state='readonly')
+            combo = ttk.Combobox(master, values=meta['values'], state='readonly')
             combo.set(default_val)
             combo.bind('<<ComboboxSelected>>', self.on_slider_change)
             return combo
             
         elif widget_type == 'checkbutton':
             var = tk.BooleanVar(value=default_val)
-            check = tk.Checkbutton(self.param_frame, variable=var, command=self.on_slider_change)
+            check = tk.Checkbutton(master, variable=var, command=self.on_slider_change)
             check.var = var # Attach var to retrieve value later
             return check
             
         else: # Default to a simple text entry
-            entry = tk.Entry(self.param_frame)
+            entry = tk.Entry(master)
             entry.insert(0, str(default_val))
             return entry
 
