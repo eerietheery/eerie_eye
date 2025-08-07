@@ -28,7 +28,8 @@ def apply_wave_distortion(image, params, selections=None):
     else:
         img_array = apply_distortion_to_region(img_array, waveform, amplitude, frequency, phase, direction)
 
-    return Image.fromarray(img_array.astype('uint8'))
+    result = np.clip(img_array, 0, 255).astype(np.uint8)
+    return Image.fromarray(result)
 
 def apply_distortion_to_region(region, waveform, amplitude, frequency, phase, direction):
     height, width = region.shape[:2]

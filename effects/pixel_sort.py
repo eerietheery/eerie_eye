@@ -55,6 +55,8 @@ def apply_pixel_sort(image, params, selections=None):
         # Blend the original and sorted arrays based on the mask
         final_array = np.where(mask, final_array, img_array)
 
+    # Ensure result is uint8 for image assignment
+    final_array = np.clip(final_array, 0, 255).astype(np.uint8)
     return Image.fromarray(final_array)
 
 def get_sort_key_vectorized(pixels, sort_by, randomness):

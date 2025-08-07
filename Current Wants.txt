@@ -1,6 +1,6 @@
 
 tkinter skin https://github.com/rdbende/Sun-Valley-ttk-theme
 
-Verify effect stability
+Verify effect stability and consistency between effect changes or waveformcanvas changes 
 
     

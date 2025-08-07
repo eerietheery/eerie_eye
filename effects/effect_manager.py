@@ -12,6 +12,9 @@ from effects.wave_distortion import apply_wave_distortion, PARAMS_META as wave_d
 from effects.color_quantization import apply_color_quantization, PARAMS_META as color_quantization_params
 from effects.echo import apply_echo, PARAMS_META as echo_params
 from effects.paulstretch import apply_paulstretch, PARAMS_META as paulstretch_params
+from effects.fractal_zoom import apply_fractal_zoom, PARAMS_META as fractal_zoom_params
+from effects.edge_feedback import apply_edge_feedback, PARAMS_META as edge_feedback_params
+from effects.moire_displacement import apply_moire_displacement, PARAMS_META as moire_displacement_params
 
 class EffectManager:
     EFFECTS = {
@@ -24,7 +27,10 @@ class EffectManager:
         'wave_distortion': {'function': apply_wave_distortion, 'params': wave_distortion_params},
         'color_quantization': {'function': apply_color_quantization, 'params': color_quantization_params},
         'echo': {'function': apply_echo, 'params': echo_params},
-        'paulstretch': {'function': apply_paulstretch, 'params': paulstretch_params}
+        'paulstretch': {'function': apply_paulstretch, 'params': paulstretch_params},
+        'fractal_zoom': {'function': apply_fractal_zoom, 'params': fractal_zoom_params},
+        'edge_feedback': {'function': apply_edge_feedback, 'params': edge_feedback_params},
+        'moire_displacement': {'function': apply_moire_displacement, 'params': moire_displacement_params}
     }
 
     @staticmethod

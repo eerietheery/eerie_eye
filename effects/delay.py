@@ -38,7 +38,8 @@ def apply_delay_effect(image, params, selections=None):
     max_possible = 1.0 + sum(decay_factor ** i for i in range(1, num_echoes + 1))
     result = result / max_possible
 
-    return Image.fromarray(np.clip(result, 0, 255).astype(np.uint8))
+    result = np.clip(result, 0, 255).astype(np.uint8)
+    return Image.fromarray(result)
 
 def apply_delay_to_channel(channel_data, delay_time, num_echoes, decay_factor, dx, dy, x_offset, region_width, region_height):
     result = channel_data.copy()

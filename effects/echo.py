@@ -52,4 +52,5 @@ def apply_echo(image, params, selections=None):
             result[:,:,c][mask] = alpha * echo[:,:,c][mask] + (1 - alpha) * result[:,:,c][mask]
     
     result = np.clip(result, 0, 255).astype(np.uint8)
+    result = np.clip(result, 0, 255).astype(np.uint8)
     return Image.fromarray(result)

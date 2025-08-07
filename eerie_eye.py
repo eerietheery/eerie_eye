@@ -5,7 +5,7 @@ from PIL import Image
 from ui.image_canvas import ImageCanvas
 from ui.effect_frame import EffectFrame
 from ui.waveform_canvas import WaveformCanvas
-from app_logic import AppLogic
+from utils.app_logic import AppLogic
 from effects.effect_manager import EffectManager
 import queue
 import logging
@@ -74,14 +74,29 @@ class EerieEye:
         main_frame = tk.Frame(self.root)
         main_frame.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
         main_frame.grid_rowconfigure(0, weight=3)
-        main_frame.grid_rowconfigure(1, weight=1)
+        main_frame.grid_rowconfigure(1, weight=0)  # For fade buttons
+        main_frame.grid_rowconfigure(2, weight=1)  # For waveform
         main_frame.grid_columnconfigure(0, weight=1)
 
         self.image_canvas = ImageCanvas(main_frame)
         self.image_canvas.grid(row=0, column=0, sticky="nsew")
 
+        # Create fade buttons frame
+        fade_frame = tk.Frame(main_frame)
+        fade_frame.grid(row=1, column=0, pady=(10, 4), sticky="w")
+        
         self.waveform_canvas = WaveformCanvas(main_frame, self.on_waveform_update)
-        self.waveform_canvas.grid(row=1, column=0, pady=(10,0), sticky="ew")
+        
+        # Add fade buttons to the frame
+        fade_in_btn = tk.Button(fade_frame, text="Fade In", width=8, 
+                               command=self.waveform_canvas.fade_in_selection)
+        fade_out_btn = tk.Button(fade_frame, text="Fade Out", width=8, 
+                                command=self.waveform_canvas.fade_out_selection)
+        
+        fade_in_btn.pack(side=tk.LEFT, padx=2)
+        fade_out_btn.pack(side=tk.LEFT, padx=2)
+        
+        self.waveform_canvas.grid(row=2, column=0, pady=(0,0), sticky="ew")
         self.waveform_canvas.canvas.update_idletasks()
 
     def on_waveform_update(self, updated_image):

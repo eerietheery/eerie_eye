@@ -55,16 +55,16 @@ def apply_dynamic_tremolo(image, params, selections=None):
     y_coords, x_coords = np.meshgrid(range(height), range(width), indexing='ij')
     x_coords_displaced = (x_coords + x_displacement) % width
     y_coords_displaced = (y_coords + y_displacement) % height
-    output_array = np.zeros_like(img_array)
+    # Directly manipulate image pixels
     for c in range(3):
-        output_array[:,:,c] = img_array[:,:,c][y_coords_displaced, x_coords_displaced]
-    blended_array = (1 - wet) * img_array + wet * output_array
+        img_array[:,:,c] = img_array[:,:,c][y_coords_displaced, x_coords_displaced]
     if selections:
         for start, end, channel in selections:
-            img_array[:, start:end, channel] = blended_array[:, start:end, channel]
+            # Only manipulate selected region
+            img_array[:, start:end, channel] = img_array[:, start:end, channel]
         return Image.fromarray(img_array)
     else:
-        return Image.fromarray(blended_array.astype(np.uint8))
+        return Image.fromarray(img_array.astype(np.uint8))
 
 def generate_wave(wave_type, lfo, t, phase):
     if wave_type == 'Sine':

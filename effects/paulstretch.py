@@ -133,4 +133,5 @@ def apply_paulstretch(image, params, selections=None):
     else:
         # Apply to entire image
         glitched = apply_glitch_displacement(img_array, offset, direction, wrap_mode, glitch_pattern, chaos_factor)
-        return Image.fromarray(glitched)
+        result = np.clip(glitched, 0, 255).astype(np.uint8)
+        return Image.fromarray(result)
