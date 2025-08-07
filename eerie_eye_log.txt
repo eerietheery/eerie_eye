@@ -348,3 +348,80 @@
 2025-07-27 20:21:53 - INFO - Cache hit. Starting from effect index 3.
 2025-07-27 20:21:53 - INFO - Cached result for effect stack of length 4
 2025-07-27 20:26:29 - INFO - Application closed
+2025-08-06 20:19:00 - INFO - Application started
+2025-08-06 20:19:07 - INFO - Effect cache cleared.
+2025-08-06 20:19:08 - INFO - Effect cache cleared.
+2025-08-06 20:19:08 - INFO - Effect cache cleared.
+2025-08-06 20:19:11 - INFO - [EffectFrame] get_effect_params returns: {'shift_r': 0.0, 'axis_r': 'horizontal', 'shift_g': 4.0, 'axis_g': 'horizontal', 'shift_b': 0.0, 'axis_b': 'horizontal'}
+2025-08-06 20:19:11 - INFO - Cached result for effect stack of length 1
+2025-08-06 20:19:11 - INFO - [EffectFrame] get_effect_params returns: {'shift_r': 0.0, 'axis_r': 'horizontal', 'shift_g': 41.86046511627907, 'axis_g': 'horizontal', 'shift_b': 0.0, 'axis_b': 'horizontal'}
+2025-08-06 20:19:11 - INFO - Cached result for effect stack of length 1
+2025-08-06 20:19:11 - INFO - [EffectFrame] get_effect_params returns: {'shift_r': 0.0, 'axis_r': 'horizontal', 'shift_g': 39.534883720930225, 'axis_g': 'horizontal', 'shift_b': 0.0, 'axis_b': 'horizontal'}
+2025-08-06 20:19:11 - INFO - Cached result for effect stack of length 1
+2025-08-06 20:19:12 - INFO - [EffectFrame] get_effect_params returns: {'shift_r': 0.0, 'axis_r': 'horizontal', 'shift_g': 39.534883720930225, 'axis_g': 'horizontal', 'shift_b': 0.0, 'axis_b': 'horizontal'}
+2025-08-06 20:19:12 - INFO - Cache hit. Starting from effect index 1.
+2025-08-06 20:19:12 - INFO - No new effects to apply, returning cached image.
+2025-08-06 20:19:14 - INFO - [EffectFrame] get_effect_params returns: {'shift_r': 0.0, 'axis_r': 'horizontal', 'shift_g': 39.534883720930225, 'axis_g': 'horizontal', 'shift_b': 0.0, 'axis_b': 'horizontal'}
+2025-08-06 20:19:14 - INFO - Cache hit. Starting from effect index 1.
+2025-08-06 20:19:14 - INFO - Cached result for effect stack of length 2
+2025-08-06 20:19:14 - INFO - [EffectFrame] get_effect_params returns: {'shift_r': 0.0, 'axis_r': 'horizontal', 'shift_g': 39.534883720930225, 'axis_g': 'horizontal', 'shift_b': 0.0, 'axis_b': 'horizontal'}
+2025-08-06 20:19:14 - INFO - Cache hit. Starting from effect index 2.
+2025-08-06 20:19:14 - INFO - Cached result for effect stack of length 3
+2025-08-06 20:19:15 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 30.0, 'num_echoes': 3.0, 'decay_factor': 0.5, 'direction_angle': 0.0}
+2025-08-06 20:19:15 - INFO - Cache hit. Starting from effect index 3.
+2025-08-06 20:19:15 - INFO - Cached result for effect stack of length 4
+2025-08-06 20:19:17 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 30.930232558139533, 'num_echoes': 3.0, 'decay_factor': 0.5, 'direction_angle': 0.0}
+2025-08-06 20:19:17 - INFO - Cache hit. Starting from effect index 3.
+2025-08-06 20:19:17 - INFO - Cached result for effect stack of length 4
+2025-08-06 20:19:17 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 43.48837209302326, 'num_echoes': 3.0, 'decay_factor': 0.5, 'direction_angle': 0.0}
+2025-08-06 20:19:17 - INFO - Cache hit. Starting from effect index 3.
+2025-08-06 20:19:17 - INFO - Cached result for effect stack of length 4
+2025-08-06 20:19:17 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 45.581395348837205, 'num_echoes': 3.0, 'decay_factor': 0.5, 'direction_angle': 0.0}
+2025-08-06 20:19:17 - INFO - Cache hit. Starting from effect index 3.
+2025-08-06 20:19:17 - INFO - Cached result for effect stack of length 4
+2025-08-06 20:19:18 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 35.116279069767444, 'num_echoes': 3.0, 'decay_factor': 0.5, 'direction_angle': 0.0}
+2025-08-06 20:19:18 - INFO - Cache hit. Starting from effect index 3.
+2025-08-06 20:19:18 - INFO - Cached result for effect stack of length 4
+2025-08-06 20:19:18 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 25.697674418604652, 'num_echoes': 3.0, 'decay_factor': 0.5, 'direction_angle': 0.0}
+2025-08-06 20:19:18 - INFO - Cache hit. Starting from effect index 3.
+2025-08-06 20:19:18 - INFO - Cached result for effect stack of length 4
+2025-08-06 20:19:18 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 24.651162790697676, 'num_echoes': 3.0, 'decay_factor': 0.5, 'direction_angle': 0.0}
+2025-08-06 20:19:18 - INFO - Cache hit. Starting from effect index 3.
+2025-08-06 20:19:18 - INFO - Cached result for effect stack of length 4
+2025-08-06 20:19:18 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 16.27906976744186, 'num_echoes': 3.0, 'decay_factor': 0.5, 'direction_angle': 0.0}
+2025-08-06 20:19:18 - INFO - Cache hit. Starting from effect index 3.
+2025-08-06 20:19:18 - INFO - Cached result for effect stack of length 4
+2025-08-06 20:19:19 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 14.186046511627907, 'num_echoes': 3.0, 'decay_factor': 0.5, 'direction_angle': 0.0}
+2025-08-06 20:19:19 - INFO - Cache hit. Starting from effect index 3.
+2025-08-06 20:19:19 - INFO - Cached result for effect stack of length 4
+2025-08-06 20:19:19 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 10.0, 'num_echoes': 3.0, 'decay_factor': 0.5, 'direction_angle': 0.0}
+2025-08-06 20:19:19 - INFO - Cache hit. Starting from effect index 3.
+2025-08-06 20:19:19 - INFO - Cached result for effect stack of length 4
+2025-08-06 20:19:19 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 10.0, 'num_echoes': 3.0, 'decay_factor': 0.5, 'direction_angle': 0.0}
+2025-08-06 20:19:19 - INFO - Cache hit. Starting from effect index 4.
+2025-08-06 20:19:19 - INFO - No new effects to apply, returning cached image.
+2025-08-06 20:19:19 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 10.0, 'num_echoes': 3.0, 'decay_factor': 0.5, 'direction_angle': 0.0}
+2025-08-06 20:19:19 - INFO - Cache hit. Starting from effect index 4.
+2025-08-06 20:19:19 - INFO - No new effects to apply, returning cached image.
+2025-08-06 20:19:20 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 10.0, 'num_echoes': 3.0, 'decay_factor': 0.22093023255813954, 'direction_angle': 0.0}
+2025-08-06 20:19:20 - INFO - Cache hit. Starting from effect index 3.
+2025-08-06 20:19:20 - INFO - Cached result for effect stack of length 4
+2025-08-06 20:19:20 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 10.0, 'num_echoes': 3.0, 'decay_factor': 0.2116279069767442, 'direction_angle': 0.0}
+2025-08-06 20:19:20 - INFO - Cache hit. Starting from effect index 3.
+2025-08-06 20:19:20 - INFO - Cached result for effect stack of length 4
+2025-08-06 20:19:20 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 10.0, 'num_echoes': 3.0, 'decay_factor': 0.23023255813953492, 'direction_angle': 0.0}
+2025-08-06 20:19:20 - INFO - Cache hit. Starting from effect index 3.
+2025-08-06 20:19:20 - INFO - Cached result for effect stack of length 4
+2025-08-06 20:19:21 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 10.0, 'num_echoes': 3.0, 'decay_factor': 0.5279069767441861, 'direction_angle': 0.0}
+2025-08-06 20:19:21 - INFO - Cache hit. Starting from effect index 3.
+2025-08-06 20:19:21 - INFO - Cached result for effect stack of length 4
+2025-08-06 20:19:21 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 10.0, 'num_echoes': 3.0, 'decay_factor': 0.6209302325581396, 'direction_angle': 0.0}
+2025-08-06 20:19:21 - INFO - Cache hit. Starting from effect index 3.
+2025-08-06 20:19:21 - INFO - Cached result for effect stack of length 4
+2025-08-06 20:19:22 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 10.0, 'num_echoes': 3.0, 'decay_factor': 0.1, 'direction_angle': 0.0}
+2025-08-06 20:19:22 - INFO - Cache hit. Starting from effect index 3.
+2025-08-06 20:19:22 - INFO - Cached result for effect stack of length 4
+2025-08-06 20:19:22 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 10.0, 'num_echoes': 3.0, 'decay_factor': 0.2116279069767442, 'direction_angle': 0.0}
+2025-08-06 20:19:22 - INFO - Cache hit. Starting from effect index 4.
+2025-08-06 20:19:22 - INFO - No new effects to apply, returning cached image.
+2025-08-06 20:19:25 - INFO - Application closed
