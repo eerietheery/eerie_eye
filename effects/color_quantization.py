@@ -28,6 +28,17 @@ def apply_color_quantization(image, params, selections=None):
     if img_array.size == 0:
         return image
     
+    # Convert grayscale to RGB if needed
+    if img_array.ndim == 2:
+        img_array = np.stack([img_array] * 3, axis=2)
+    elif img_array.ndim != 3 or img_array.shape[2] not in [3, 4]:
+        # Unsupported format
+        return image
+    
+    # Convert RGBA to RGB if needed
+    if img_array.shape[2] == 4:
+        img_array = img_array[:, :, :3]
+    
     original_shape = img_array.shape
     
     # Convert to working color space
@@ -51,9 +62,10 @@ def apply_color_quantization(image, params, selections=None):
     return Image.fromarray(np.clip(img_array, 0, 255).astype(np.uint8))
 
 def process_quantization(img_array, num_colors, dither_amount, dither_mode, selections=None):
-    """Optimized quantization with vectorized operations."""
-    # Validate image array
-    if img_array.ndim != 3:
+    """Optimized quantization with vectorized operations. Supports RGB images."""
+    # Validate image array - only support 3-channel RGB images
+    if img_array.ndim != 3 or img_array.shape[2] != 3:
+        # Return as-is for grayscale or invalid images
         return img_array
     
     height, width, channels = img_array.shape
@@ -64,8 +76,10 @@ def process_quantization(img_array, num_colors, dither_amount, dither_mode, sele
     # Apply dithering if needed
     if dither_amount > 0 and dither_mode != 'none':
         if dither_mode == 'floyd-steinberg':
-            # Create a proper 2D palette for floyd-steinberg
-            # Each level applies to all channels
+            # Create a proper 2D palette for floyd-steinberg dithering
+            # The palette is (num_colors, channels) where each row contains the same
+            # quantization level for all channels. This creates a grayscale palette
+            # which is correct for color quantization (reducing total color count).
             palette = np.tile(levels[:, np.newaxis], (1, channels))
             img_array = floyd_steinberg_dither(img_array, palette, dither_amount)
         else:
