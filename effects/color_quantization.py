@@ -52,13 +52,22 @@ def apply_color_quantization(image, params, selections=None):
 
 def process_quantization(img_array, num_colors, dither_amount, dither_mode, selections=None):
     """Optimized quantization with vectorized operations."""
+    # Validate image array
+    if img_array.ndim != 3:
+        return img_array
+    
+    height, width, channels = img_array.shape
+    
     # Create quantization levels
     levels = np.linspace(0, 255, num_colors)
     
     # Apply dithering if needed
     if dither_amount > 0 and dither_mode != 'none':
         if dither_mode == 'floyd-steinberg':
-            img_array = floyd_steinberg_dither(img_array, levels, dither_amount)
+            # Create a proper 2D palette for floyd-steinberg
+            # Each level applies to all channels
+            palette = np.tile(levels[:, np.newaxis], (1, channels))
+            img_array = floyd_steinberg_dither(img_array, palette, dither_amount)
         else:
             dither_noise = generate_ordered_dither(dither_mode, img_array.shape, dither_amount)
             img_array = np.clip(img_array + dither_noise, 0, 255)

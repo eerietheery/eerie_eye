@@ -1,5 +1,5 @@
 import numpy as np
-from PIL import Image, ImageFilter
+from PIL import Image
 
 PARAMS_META = [
     {'name': 'edge_strength', 'type': 'scale', 'range': (1, 10), 'default': 5},
