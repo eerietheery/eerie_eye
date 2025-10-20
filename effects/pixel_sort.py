@@ -16,13 +16,25 @@ def apply_pixel_sort(image, params, selections=None):
     """
     Sorts pixels using various modes, directions, and criteria.
     """
-    # Get parameters
+    # Validate and clamp parameters
     mode = params.get('mode', 'threshold')
-    direction_angle = int(params.get('direction_angle', 90))
+    if mode not in ['threshold', 'interval', 'edge', 'random']:
+        mode = 'threshold'
+    
+    direction_angle = max(0, min(360, int(params.get('direction_angle', 90))))
+    
     sort_by = params.get('sort_by', 'brightness')
-    lower_bound = int(params.get('lower_bound', 100))
-    upper_bound = int(params.get('upper_bound', 200))
-    randomness = float(params.get('randomness', 0.0))
+    if sort_by not in ['brightness', 'hue', 'saturation', 'red', 'green', 'blue']:
+        sort_by = 'brightness'
+    
+    lower_bound = max(0, min(255, int(params.get('lower_bound', 100))))
+    upper_bound = max(0, min(255, int(params.get('upper_bound', 200))))
+    
+    # Ensure lower_bound is less than upper_bound
+    if lower_bound >= upper_bound:
+        lower_bound, upper_bound = 0, 255
+    
+    randomness = max(0.0, min(1.0, float(params.get('randomness', 0.0))))
     reverse = bool(params.get('reverse', False))
 
     img_array = np.array(image)
@@ -61,6 +73,9 @@ def apply_pixel_sort(image, params, selections=None):
 
 def get_sort_key_vectorized(pixels, sort_by, randomness):
     """Vectorized function to get the sort key for an array of pixels."""
+    if len(pixels) == 0:
+        return np.array([])
+    
     if pixels.ndim == 1: # Grayscale or single channel
         keys = pixels.astype(np.float32)
     else:
@@ -68,35 +83,35 @@ def get_sort_key_vectorized(pixels, sort_by, randomness):
         if sort_by == 'brightness':
             keys = 0.299 * r + 0.587 * g + 0.114 * b
         elif sort_by == 'red':
-            keys = r
+            keys = r.astype(np.float32)
         elif sort_by == 'green':
-            keys = g
+            keys = g.astype(np.float32)
         elif sort_by == 'blue':
-            keys = b
+            keys = b.astype(np.float32)
         elif sort_by == 'hue':
-            max_val = np.maximum(np.maximum(r, g), b)
-            min_val = np.minimum(np.minimum(r, g), b)
+            max_val = np.maximum(np.maximum(r, g), b).astype(np.float32)
+            min_val = np.minimum(np.minimum(r, g), b).astype(np.float32)
             diff = max_val - min_val
             keys = np.zeros_like(max_val, dtype=np.float32)
             
-            # Avoid division by zero
-            mask_r = (max_val == r) & (diff != 0)
-            keys[mask_r] = (60 * ((g[mask_r] - b[mask_r]) / diff[mask_r]) + 360) % 360
-            mask_g = (max_val == g) & (diff != 0)
-            keys[mask_g] = (60 * ((b[mask_g] - r[mask_g]) / diff[mask_g]) + 120) % 360
-            mask_b = (max_val == b) & (diff != 0)
-            keys[mask_b] = (60 * ((r[mask_b] - g[mask_b]) / diff[mask_b]) + 240) % 360
+            # Avoid division by zero with safe division
+            mask_r = (max_val == r) & (diff > 0)
+            keys[mask_r] = (60 * ((g[mask_r] - b[mask_r]) / (diff[mask_r] + 1e-10)) + 360) % 360
+            mask_g = (max_val == g) & (diff > 0)
+            keys[mask_g] = (60 * ((b[mask_g] - r[mask_g]) / (diff[mask_g] + 1e-10)) + 120) % 360
+            mask_b = (max_val == b) & (diff > 0)
+            keys[mask_b] = (60 * ((r[mask_b] - g[mask_b]) / (diff[mask_b] + 1e-10)) + 240) % 360
         elif sort_by == 'saturation':
-            max_val = np.maximum(np.maximum(r, g), b)
-            min_val = np.minimum(np.minimum(r, g), b)
-            # Avoid division by zero
-            keys = np.divide(max_val - min_val, max_val, out=np.zeros_like(max_val, dtype=np.float32), where=max_val!=0)
+            max_val = np.maximum(np.maximum(r, g), b).astype(np.float32)
+            min_val = np.minimum(np.minimum(r, g), b).astype(np.float32)
+            # Avoid division by zero with safe division
+            keys = np.divide(max_val - min_val, max_val + 1e-10, out=np.zeros_like(max_val, dtype=np.float32), where=max_val > 0)
         else: # Default to brightness
             keys = 0.299 * r + 0.587 * g + 0.114 * b
 
     if randomness > 0:
         noise = np.random.uniform(-255 * randomness, 255 * randomness, keys.shape)
-        keys += noise
+        keys = keys + noise
         
     return keys
 

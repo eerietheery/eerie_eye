@@ -47,11 +47,38 @@ class EffectManager:
 
     @staticmethod
     def apply_effect(effect_function, image, params, selections):
-        # The effect function is now expected to handle selections=None if it doesn't support it
-        result = effect_function(image, params, selections=selections)
-        if isinstance(result, Image.Image):
-            return np.array(result)
-        elif isinstance(result, np.ndarray):
-            return result
-        else:
-            raise TypeError("Effect function must return a PIL Image or NumPy array")
+        """
+        Apply an effect with robust error handling and parameter validation.
+        """
+        try:
+            # Validate image
+            if image is None:
+                raise ValueError("Image cannot be None")
+            
+            # Validate params
+            if not isinstance(params, dict):
+                raise ValueError("Parameters must be a dictionary")
+            
+            # Call the effect function
+            result = effect_function(image, params, selections=selections)
+            
+            # Validate result
+            if result is None:
+                raise ValueError("Effect function returned None")
+            
+            # Convert result to numpy array
+            if isinstance(result, Image.Image):
+                return np.array(result)
+            elif isinstance(result, np.ndarray):
+                return result
+            else:
+                raise TypeError(f"Effect function must return a PIL Image or NumPy array, got {type(result)}")
+        
+        except Exception as e:
+            # Log the error with context
+            import logging
+            logging.error(f"Error in effect '{effect_function.__name__}': {str(e)}")
+            logging.error(f"Parameters: {params}")
+            logging.error(f"Selections: {selections}")
+            # Re-raise to let the caller handle it
+            raise

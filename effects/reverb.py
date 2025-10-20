@@ -130,13 +130,17 @@ class AudacityReverbTank:
         """
         Optimized reverb processing using vectorized operations
         """
-        height, width = image_data.shape
-        
-        # Flatten image to 1D "audio buffer" (reading like raster scan)
-        if channel_idx == 1:
-            audio_buffer = image_data.T.flatten()
-        else:
-            audio_buffer = image_data.flatten()
+        try:
+            height, width = image_data.shape
+            
+            if height == 0 or width == 0:
+                return image_data
+            
+            # Flatten image to 1D "audio buffer" (reading like raster scan)
+            if channel_idx == 1:
+                audio_buffer = image_data.T.flatten()
+            else:
+                audio_buffer = image_data.flatten()
             
         # Vectorized U-Law decode - massive speedup
         linear_samples = ulaw_decode_vectorized(audio_buffer).astype(np.float32)
@@ -168,24 +172,34 @@ class AudacityReverbTank:
         # Vectorized U-Law encode - massive speedup
         ulaw_bytes = ulaw_encode_vectorized(mixed_output)
         
-        # Reshape back to image dimensions
-        if channel_idx == 1:
-            result = ulaw_bytes.reshape((width, height)).T
-        else:
-            result = ulaw_bytes.reshape((height, width))
+            # Reshape back to image dimensions
+            if channel_idx == 1:
+                result = ulaw_bytes.reshape((width, height)).T
+            else:
+                result = ulaw_bytes.reshape((height, width))
+            
+            return result
         
-        return result
+        except Exception as e:
+            import logging
+            logging.error(f"Reverb buffer processing error: {e}")
+            return image_data
 
 def apply_reverb(image, params, selections=None):
     """Apply databending reverb effect treating image as U-Law audio data - optimized"""
-    img_array = np.array(image)
-    
-    # Early return for very small images (not worth processing)
-    if img_array.size < 1000:
-        return image
-    
-    # Create reverb processor once
-    reverb_tank = AudacityReverbTank(params)
+    try:
+        img_array = np.array(image)
+        
+        # Early return for very small images (not worth processing)
+        if img_array.size < 1000:
+            return image
+        
+        # Validate image dimensions
+        if img_array.ndim not in [2, 3]:
+            return image
+        
+        # Create reverb processor once
+        reverb_tank = AudacityReverbTank(params)
     
     if selections:
         # Process only selected regions for better performance
@@ -216,6 +230,12 @@ def apply_reverb(image, params, selections=None):
             # Grayscale processing
             img_array = reverb_tank.process_audio_buffer(img_array, 0)
     
-    # Ensure proper data type without unnecessary clipping (already handled in processing)
-    img_array = img_array.astype(np.uint8)
-    return Image.fromarray(img_array)
+        # Ensure proper data type without unnecessary clipping (already handled in processing)
+        img_array = img_array.astype(np.uint8)
+        return Image.fromarray(img_array)
+    
+    except Exception as e:
+        import logging
+        logging.error(f"Reverb effect error: {e}")
+        # Return original image on error
+        return image
