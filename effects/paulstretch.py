@@ -14,20 +14,36 @@ def apply_paulstretch(image, params, selections=None):
     """
     Creates glitchy pixel displacement effects with various patterns and chaos.
     """
-    offset = int(params.get('offset', 8))
+    # Validate and clamp parameters
+    offset = max(0, min(100, int(params.get('offset', 8))))
+    chaos_factor = max(0.0, min(1.0, float(params.get('chaos_factor', 0.3))))
+    
     direction = params.get('direction', 'horizontal')
+    if direction not in ['horizontal', 'vertical', 'alternating']:
+        direction = 'horizontal'
+    
     wrap_mode = params.get('wrap_mode', 'circular')
+    if wrap_mode not in ['circular', 'reflect', 'constant']:
+        wrap_mode = 'circular'
+    
     glitch_pattern = params.get('glitch_pattern', 'wave')
-    chaos_factor = float(params.get('chaos_factor', 0.3))
+    if glitch_pattern not in ['linear', 'wave', 'random', 'spiral']:
+        glitch_pattern = 'wave'
 
     if offset == 0:
         return image
 
     img_array = np.array(image)
+    if img_array.size == 0:
+        return image
+    
     height, width = img_array.shape[:2]
 
     def generate_glitch_offsets(height, width, offset, pattern, chaos):
         """Generate varying offsets for each row/column based on pattern."""
+        if height == 0:
+            return np.array([])
+        
         if pattern == 'linear':
             # Simple alternating pattern with chaos
             offsets = np.array([offset * (1 if i % 2 == 0 else -1) for i in range(height)])
@@ -42,8 +58,15 @@ def apply_paulstretch(image, params, selections=None):
             # Spiral pattern that increases with distance
             center = height // 2
             distances = np.abs(np.arange(height) - center)
-            spiral = (distances * offset / center).astype(int)
+            if center > 0:
+                spiral = (distances * offset / (center + 1)).astype(int)
+            else:
+                spiral = np.zeros(height, dtype=int)
             offsets = spiral * np.array([1 if i % 2 == 0 else -1 for i in range(height)])
+        else:
+            # Default to wave pattern
+            wave = np.sin(np.linspace(0, 4 * np.pi, height))
+            offsets = (offset * wave).astype(int)
         
         # Add chaos/randomness
         if chaos > 0:
@@ -54,10 +77,14 @@ def apply_paulstretch(image, params, selections=None):
 
     def glitch_roll(arr, shift_amount, wrap_mode):
         """Apply pixel shifting with different wrap modes."""
-        if shift_amount == 0:
+        if shift_amount == 0 or arr.size == 0:
             return arr
         
-        shift_amount = shift_amount % arr.shape[-1]  # Ensure within bounds
+        axis_len = arr.shape[-1]
+        if axis_len == 0:
+            return arr
+        
+        shift_amount = shift_amount % axis_len  # Ensure within bounds
         
         if wrap_mode == 'circular':
             return np.roll(arr, shift_amount, axis=-1)

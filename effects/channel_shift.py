@@ -15,16 +15,27 @@ PARAMS_META = [
 def apply_channel_shift(image, params, selections=None):
     try:
         img_array = np.array(image)
-        height, width, _ = img_array.shape
+        if img_array.size == 0 or img_array.ndim != 3:
+            return image
         
-        # Calculate shift values as a percentage of image dimensions
-        shift_r_pct = params.get('shift_r', 0) / 100.0
-        shift_g_pct = params.get('shift_g', 0) / 100.0
-        shift_b_pct = params.get('shift_b', 0) / 100.0
+        height, width, channels = img_array.shape
+        
+        # Validate and clamp shift values
+        shift_r_pct = max(-100.0, min(100.0, float(params.get('shift_r', 0)))) / 100.0
+        shift_g_pct = max(-100.0, min(100.0, float(params.get('shift_g', 0)))) / 100.0
+        shift_b_pct = max(-100.0, min(100.0, float(params.get('shift_b', 0)))) / 100.0
         
         axis_r = params.get('axis_r', 'horizontal')
         axis_g = params.get('axis_g', 'horizontal')
         axis_b = params.get('axis_b', 'horizontal')
+        
+        # Validate axis values
+        if axis_r not in ['horizontal', 'vertical']:
+            axis_r = 'horizontal'
+        if axis_g not in ['horizontal', 'vertical']:
+            axis_g = 'horizontal'
+        if axis_b not in ['horizontal', 'vertical']:
+            axis_b = 'horizontal'
 
         shift_r = int(width * shift_r_pct if axis_r == 'horizontal' else height * shift_r_pct)
         shift_g = int(width * shift_g_pct if axis_g == 'horizontal' else height * shift_g_pct)

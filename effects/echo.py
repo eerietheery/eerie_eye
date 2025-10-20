@@ -11,10 +11,14 @@ PARAMS_META = [
 
 def apply_echo(image, params, selections=None):
     """Apply a new echo effect to an image."""
-    echo_intensity = float(params.get('echo_intensity', 0.5))
-    echo_distance = int(params.get('echo_distance', 20))
-    echo_count = int(params.get('echo_count', 3))
+    # Validate and clamp parameters
+    echo_intensity = max(0.1, min(1.0, float(params.get('echo_intensity', 0.5))))
+    echo_distance = max(1, min(50, int(params.get('echo_distance', 20))))
+    echo_count = max(1, min(10, int(params.get('echo_count', 3))))
     echo_direction = params.get('echo_direction', 'horizontal')
+    
+    if echo_direction not in ['horizontal', 'vertical']:
+        echo_direction = 'horizontal'
 
     img_array = np.array(image).astype(np.float32)
     
@@ -51,6 +55,5 @@ def apply_echo(image, params, selections=None):
             alpha = intensity
             result[:,:,c][mask] = alpha * echo[:,:,c][mask] + (1 - alpha) * result[:,:,c][mask]
     
-    result = np.clip(result, 0, 255).astype(np.uint8)
     result = np.clip(result, 0, 255).astype(np.uint8)
     return Image.fromarray(result)

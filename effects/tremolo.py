@@ -18,12 +18,23 @@ PARAMS_META_DYNAMIC = [
 ]
 
 def apply_tremolo_legacy(image, params, selections=None):
+    # Validate and clamp parameters
+    wave_type = params.get('wave_type', 'Sine')
+    if wave_type not in ['Sine', 'Triangle', 'Sawtooth', 'Inverse Sawtooth', 'Square']:
+        wave_type = 'Sine'
+    
+    phase = max(0.0, min(360.0, float(params.get('phase', 0))))
+    wet = max(0.0, min(100.0, float(params.get('wet', 50)))) / 100.0
+    lfo = max(0.0, min(100.0, float(params.get('lfo', 50))))
+    
     img_array = np.array(image)
-    wave_type = params['wave_type']
-    phase = float(params['phase'])
-    wet = float(params['wet']) / 100.0
-    lfo = float(params['lfo'])
+    if img_array.size == 0 or img_array.ndim != 3:
+        return image
+    
     height, width, _ = img_array.shape
+    if width == 0:
+        return image
+    
     t = np.linspace(0, 1, width)
     wave = generate_wave(wave_type, lfo, t, phase)
     displacement = (wave * wet * width).astype(int)
@@ -41,13 +52,24 @@ def apply_tremolo_legacy(image, params, selections=None):
         return Image.fromarray(output_array)
 
 def apply_dynamic_tremolo(image, params, selections=None):
+    # Validate and clamp parameters
+    wave_type = params.get('wave_type', 'Sine')
+    if wave_type not in ['Sine', 'Triangle', 'Sawtooth', 'Inverse Sawtooth', 'Square']:
+        wave_type = 'Sine'
+    
+    phase = max(0.0, min(360.0, float(params.get('phase', 0))))
+    wet = max(0.0, min(100.0, float(params.get('wet', 50)))) / 100.0
+    lfo = max(0.0, min(100.0, float(params.get('lfo', 50))))
+    displacement_strength = max(0.0, min(100.0, float(params.get('displacement_strength', 50)))) / 100.0
+    
     img_array = np.array(image)
-    wave_type = params['wave_type']
-    phase = float(params['phase'])
-    wet = float(params['wet']) / 100.0
-    lfo = float(params['lfo'])
-    displacement_strength = float(params['displacement_strength']) / 100.0
+    if img_array.size == 0 or img_array.ndim != 3:
+        return image
+    
     height, width, _ = img_array.shape
+    if width == 0 or height == 0:
+        return image
+    
     t = np.linspace(0, 1, width)
     wave = generate_wave(wave_type, lfo, t, phase)
     x_displacement = (wave * displacement_strength * width).astype(int)
@@ -67,8 +89,13 @@ def apply_dynamic_tremolo(image, params, selections=None):
         return Image.fromarray(img_array.astype(np.uint8))
 
 def generate_wave(wave_type, lfo, t, phase):
+    if len(t) == 0:
+        return np.array([])
+    
+    phase_rad = np.radians(phase)
+    
     if wave_type == 'Sine':
-        wave = np.sin(2 * np.pi * lfo * t + np.radians(phase - 90))
+        wave = np.sin(2 * np.pi * lfo * t + phase_rad - np.pi / 2)
     elif wave_type == 'Triangle':
         wave = 2 * np.abs(2 * (lfo * t - np.floor(0.5 + lfo * t))) - 1
     elif wave_type == 'Sawtooth':
@@ -76,5 +103,9 @@ def generate_wave(wave_type, lfo, t, phase):
     elif wave_type == 'Inverse Sawtooth':
         wave = -2 * (lfo * t - np.floor(0.5 + lfo * t))
     elif wave_type == 'Square':
-        wave = np.sign(np.sin(2 * np.pi * lfo * t + np.radians(phase)))
+        wave = np.sign(np.sin(2 * np.pi * lfo * t + phase_rad))
+    else:
+        # Default to sine if unknown type
+        wave = np.sin(2 * np.pi * lfo * t + phase_rad - np.pi / 2)
+    
     return (wave + 1) / 2

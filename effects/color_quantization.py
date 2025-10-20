@@ -11,13 +11,34 @@ PARAMS_META = [
 ]
 
 def apply_color_quantization(image, params, selections=None):
-    num_colors = int(params['num_colors'])
-    dither_amount = float(params['dither_amount'])
-    dither_mode = params['dither_mode']
+    # Validate and clamp parameters
+    num_colors = max(2, min(256, int(params.get('num_colors', 8))))
+    dither_amount = max(0.0, min(1.0, float(params.get('dither_amount', 0.5))))
+    chunk_size = max(64, min(512, int(params.get('chunk_size', 256))))
+    
+    dither_mode = params.get('dither_mode', 'floyd-steinberg')
+    if dither_mode not in ['none', 'ordered_4x4', 'ordered_8x8', 'floyd-steinberg', 'random']:
+        dither_mode = 'floyd-steinberg'
+    
     color_space = params.get('color_space', 'RGB')
-    chunk_size = int(params.get('chunk_size', 256))
+    if color_space not in ['RGB', 'LAB', 'HSV']:
+        color_space = 'RGB'
 
     img_array = np.array(image, dtype=np.float32)
+    if img_array.size == 0:
+        return image
+    
+    # Convert grayscale to RGB if needed
+    if img_array.ndim == 2:
+        img_array = np.stack([img_array] * 3, axis=2)
+    elif img_array.ndim != 3 or img_array.shape[2] not in [3, 4]:
+        # Unsupported format
+        return image
+    
+    # Convert RGBA to RGB if needed
+    if img_array.shape[2] == 4:
+        img_array = img_array[:, :, :3]
+    
     original_shape = img_array.shape
     
     # Convert to working color space
@@ -41,14 +62,26 @@ def apply_color_quantization(image, params, selections=None):
     return Image.fromarray(np.clip(img_array, 0, 255).astype(np.uint8))
 
 def process_quantization(img_array, num_colors, dither_amount, dither_mode, selections=None):
-    """Optimized quantization with vectorized operations."""
+    """Optimized quantization with vectorized operations. Supports RGB images."""
+    # Validate image array - only support 3-channel RGB images
+    if img_array.ndim != 3 or img_array.shape[2] != 3:
+        # Return as-is for grayscale or invalid images
+        return img_array
+    
+    height, width, channels = img_array.shape
+    
     # Create quantization levels
     levels = np.linspace(0, 255, num_colors)
     
     # Apply dithering if needed
     if dither_amount > 0 and dither_mode != 'none':
         if dither_mode == 'floyd-steinberg':
-            img_array = floyd_steinberg_dither(img_array, levels, dither_amount)
+            # Create a proper 2D palette for floyd-steinberg dithering
+            # The palette is (num_colors, channels) where each row contains the same
+            # quantization level for all channels. This creates a grayscale palette
+            # which is correct for color quantization (reducing total color count).
+            palette = np.tile(levels[:, np.newaxis], (1, channels))
+            img_array = floyd_steinberg_dither(img_array, palette, dither_amount)
         else:
             dither_noise = generate_ordered_dither(dither_mode, img_array.shape, dither_amount)
             img_array = np.clip(img_array + dither_noise, 0, 255)
@@ -69,7 +102,7 @@ def process_quantization(img_array, num_colors, dither_amount, dither_mode, sele
     
     return img_array
 
-def process_in_chunks(img_array, num_colors, dither_amount, dither_mode, chunk_size, selections=None, color_space='RGB'):
+def process_in_chunks(img_array, num_colors, dither_amount, dither_mode, chunk_size, selections=None):
     """Process large images in chunks to reduce memory usage."""
     height, width, channels = img_array.shape
     result = np.zeros_like(img_array)
@@ -216,6 +249,11 @@ def rgb_to_hsv(rgb):
 def hsv_to_rgb(hsv):
     """Convert HSV to RGB color space."""
     h, s, v = hsv[:, :, 0], hsv[:, :, 1] / 100.0, hsv[:, :, 2] / 100.0
+    
+    # Clamp values to valid ranges
+    h = np.clip(h, 0, 360)
+    s = np.clip(s, 0, 1)
+    v = np.clip(v, 0, 1)
     
     c = v * s
     x = c * (1 - np.abs((h / 60) % 2 - 1))

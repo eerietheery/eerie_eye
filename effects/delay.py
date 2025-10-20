@@ -10,12 +10,16 @@ PARAMS_META = [
 ]
 
 def apply_delay_effect(image, params, selections=None):
-    delay_time = int(params['delay_time'])
-    num_echoes = int(params['num_echoes'])
-    decay_factor = float(params['decay_factor'])
-    direction_angle = int(params.get('direction_angle', 0))  # 0-360 degrees
+    # Validate and clamp parameters
+    delay_time = max(1, min(100, int(params.get('delay_time', 30))))
+    num_echoes = max(1, min(10, int(params.get('num_echoes', 3))))
+    decay_factor = max(0.1, min(0.9, float(params.get('decay_factor', 0.5))))
+    direction_angle = max(0, min(360, int(params.get('direction_angle', 0))))
 
     img_array = np.array(image).astype(np.float32)
+    if img_array.size == 0:
+        return image
+    
     height, width, channels = img_array.shape
     
     # Convert angle to direction vector

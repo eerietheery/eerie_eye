@@ -130,92 +130,112 @@ class AudacityReverbTank:
         """
         Optimized reverb processing using vectorized operations
         """
-        height, width = image_data.shape
-        
-        # Flatten image to 1D "audio buffer" (reading like raster scan)
-        if channel_idx == 1:
-            audio_buffer = image_data.T.flatten()
-        else:
-            audio_buffer = image_data.flatten()
+        try:
+            height, width = image_data.shape
             
-        # Vectorized U-Law decode - massive speedup
-        linear_samples = ulaw_decode_vectorized(audio_buffer).astype(np.float32)
+            if height == 0 or width == 0:
+                return image_data
+            
+            # Flatten image to 1D "audio buffer" (reading like raster scan)
+            if channel_idx == 1:
+                audio_buffer = image_data.T.flatten()
+            else:
+                audio_buffer = image_data.flatten()
+            
+            # Vectorized U-Law decode - massive speedup
+            linear_samples = ulaw_decode_vectorized(audio_buffer).astype(np.float32)
+            
+            # Optimized reverb with pre-allocated arrays
+            buffer_len = len(linear_samples)
+            output = np.zeros(buffer_len, dtype=np.float32)
+            
+            # Use fewer, more strategic delays for better performance
+            feedback = 0.7
+            base_delay = max(16, int(0.08 * buffer_len))
+            
+            # Process only 3 echoes instead of 4 for speed
+            delays = [base_delay, base_delay + base_delay // 3, base_delay + base_delay // 2]
+            gains = [0.7, 0.5, 0.3]
+            phases = [1, -1, 1]
+            
+            for i, (delay, gain, phase) in enumerate(zip(delays, gains, phases)):
+                if delay < buffer_len:
+                    # Use numpy slicing instead of loops - much faster
+                    echo = np.zeros(buffer_len, dtype=np.float32)
+                    echo[delay:] = linear_samples[:-delay]
+                    output += phase * gain * echo * (feedback ** (i + 1))
+            
+            # Optimized mixing - vectorized operations
+            mixed_output = output * 0.4 + linear_samples * 0.6
+            mixed_output = np.clip(mixed_output, -ULAW_CLIP, ULAW_CLIP)
+            
+            # Vectorized U-Law encode - massive speedup
+            ulaw_bytes = ulaw_encode_vectorized(mixed_output)
+            
+            # Reshape back to image dimensions
+            if channel_idx == 1:
+                result = ulaw_bytes.reshape((width, height)).T
+            else:
+                result = ulaw_bytes.reshape((height, width))
+            
+            return result
         
-        # Optimized reverb with pre-allocated arrays
-        buffer_len = len(linear_samples)
-        output = np.zeros(buffer_len, dtype=np.float32)
-        
-        # Use fewer, more strategic delays for better performance
-        feedback = 0.7
-        base_delay = max(16, int(0.08 * buffer_len))
-        
-        # Process only 3 echoes instead of 4 for speed
-        delays = [base_delay, base_delay + base_delay // 3, base_delay + base_delay // 2]
-        gains = [0.7, 0.5, 0.3]
-        phases = [1, -1, 1]
-        
-        for i, (delay, gain, phase) in enumerate(zip(delays, gains, phases)):
-            if delay < buffer_len:
-                # Use numpy slicing instead of loops - much faster
-                echo = np.zeros(buffer_len, dtype=np.float32)
-                echo[delay:] = linear_samples[:-delay]
-                output += phase * gain * echo * (feedback ** (i + 1))
-        
-        # Optimized mixing - vectorized operations
-        mixed_output = output * 0.4 + linear_samples * 0.6
-        mixed_output = np.clip(mixed_output, -ULAW_CLIP, ULAW_CLIP)
-        
-        # Vectorized U-Law encode - massive speedup
-        ulaw_bytes = ulaw_encode_vectorized(mixed_output)
-        
-        # Reshape back to image dimensions
-        if channel_idx == 1:
-            result = ulaw_bytes.reshape((width, height)).T
-        else:
-            result = ulaw_bytes.reshape((height, width))
-        
-        return result
+        except Exception as e:
+            import logging
+            logging.error(f"Reverb buffer processing error: {e}")
+            return image_data
 
 def apply_reverb(image, params, selections=None):
     """Apply databending reverb effect treating image as U-Law audio data - optimized"""
-    img_array = np.array(image)
-    
-    # Early return for very small images (not worth processing)
-    if img_array.size < 1000:
-        return image
-    
-    # Create reverb processor once
-    reverb_tank = AudacityReverbTank(params)
-    
-    if selections:
-        # Process only selected regions for better performance
-        for start, end, channel in selections:
-            # Skip tiny selections
-            if end - start < 10:
-                continue
-                
-            if img_array.ndim == 3:
-                if channel < img_array.shape[2]:  # Bounds check
-                    region = img_array[:, start:end, channel]
-                    processed = reverb_tank.process_audio_buffer(region, channel)
-                    img_array[:, start:end, channel] = processed
-            else:
-                region = img_array[:, start:end]
-                processed = reverb_tank.process_audio_buffer(region, 0)
-                img_array[:, start:end] = processed
-    else:
-        # Process entire image - optimized for different image types
-        if img_array.ndim == 3:
-            # Process each channel efficiently
-            height, width, channels = img_array.shape
-            for channel in range(min(channels, 3)):  # Only process RGB, skip alpha
-                img_array[:, :, channel] = reverb_tank.process_audio_buffer(
-                    img_array[:, :, channel], channel
-                )
+    try:
+        img_array = np.array(image)
+        
+        # Early return for very small images (not worth processing)
+        if img_array.size < 1000:
+            return image
+        
+        # Validate image dimensions
+        if img_array.ndim not in [2, 3]:
+            return image
+        
+        # Create reverb processor once
+        reverb_tank = AudacityReverbTank(params)
+        
+        if selections:
+            # Process only selected regions for better performance
+            for start, end, channel in selections:
+                # Skip tiny selections
+                if end - start < 10:
+                    continue
+                    
+                if img_array.ndim == 3:
+                    if channel < img_array.shape[2]:  # Bounds check
+                        region = img_array[:, start:end, channel]
+                        processed = reverb_tank.process_audio_buffer(region, channel)
+                        img_array[:, start:end, channel] = processed
+                else:
+                    region = img_array[:, start:end]
+                    processed = reverb_tank.process_audio_buffer(region, 0)
+                    img_array[:, start:end] = processed
         else:
-            # Grayscale processing
-            img_array = reverb_tank.process_audio_buffer(img_array, 0)
+            # Process entire image - optimized for different image types
+            if img_array.ndim == 3:
+                # Process each channel efficiently
+                height, width, channels = img_array.shape
+                for channel in range(min(channels, 3)):  # Only process RGB, skip alpha
+                    img_array[:, :, channel] = reverb_tank.process_audio_buffer(
+                        img_array[:, :, channel], channel
+                    )
+            else:
+                # Grayscale processing
+                img_array = reverb_tank.process_audio_buffer(img_array, 0)
+        
+        # Ensure proper data type without unnecessary clipping (already handled in processing)
+        img_array = img_array.astype(np.uint8)
+        return Image.fromarray(img_array)
     
-    # Ensure proper data type without unnecessary clipping (already handled in processing)
-    img_array = img_array.astype(np.uint8)
-    return Image.fromarray(img_array)
+    except Exception as e:
+        import logging
+        logging.error(f"Reverb effect error: {e}")
+        # Return original image on error
+        return image

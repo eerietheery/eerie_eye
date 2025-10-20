@@ -16,16 +16,26 @@ def apply_moire_displacement(image, params, selections=None):
     """
     Create robust moire pattern displacement effects by interfering two patterns.
     """
-    frequency1 = float(params.get('frequency1', 20))
-    frequency2 = float(params.get('frequency2', 25))
-    angle1 = float(params.get('angle1', 0))
-    angle2 = float(params.get('angle2', 45))
-    displacement_strength = float(params.get('displacement_strength', 30))
+    # Validate and clamp parameters
+    frequency1 = max(1.0, min(100.0, float(params.get('frequency1', 20))))
+    frequency2 = max(1.0, min(100.0, float(params.get('frequency2', 25))))
+    angle1 = max(0.0, min(360.0, float(params.get('angle1', 0))))
+    angle2 = max(0.0, min(360.0, float(params.get('angle2', 45))))
+    displacement_strength = max(0.0, min(100.0, float(params.get('displacement_strength', 30))))
+    phase_shift = max(0.0, min(360.0, float(params.get('phase_shift', 0))))
+    
     pattern_type = params.get('pattern_type', 'sine')
+    if pattern_type not in ['sine', 'square', 'triangle']:
+        pattern_type = 'sine'
+    
     blend_mode = params.get('blend_mode', 'displacement')
-    phase_shift = float(params.get('phase_shift', 0))
+    if blend_mode not in ['displacement', 'multiply', 'overlay']:
+        blend_mode = 'displacement'
     
     arr = np.array(image)
+    if arr.size == 0:
+        return image
+    
     height, width = arr.shape[:2]
     
     # Create coordinate grids
@@ -43,8 +53,13 @@ def apply_moire_displacement(image, params, selections=None):
     # Create moire interference
     moire = pattern1 * pattern2
     
-    # Normalize moire pattern
-    moire = (moire - moire.min()) / (moire.max() - moire.min())
+    # Normalize moire pattern with safe division
+    moire_min = moire.min()
+    moire_max = moire.max()
+    if moire_max - moire_min > 1e-10:
+        moire = (moire - moire_min) / (moire_max - moire_min + 1e-10)
+    else:
+        moire = np.zeros_like(moire)
     
     if blend_mode == 'displacement':
         # Use moire for pixel displacement

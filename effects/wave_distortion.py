@@ -11,11 +11,18 @@ PARAMS_META = [
 ]
 
 def apply_wave_distortion(image, params, selections=None):
+    # Validate and clamp parameters
     waveform = params.get('waveform', 'sine')
-    amplitude = float(params.get('amplitude', 10))
-    frequency = float(params.get('frequency', 5))
-    phase = float(params.get('phase', 0))
+    if waveform not in ['sine', 'triangle', 'square', 'sawtooth', 'pulse']:
+        waveform = 'sine'
+    
+    amplitude = max(0.0, min(100.0, float(params.get('amplitude', 10))))
+    frequency = max(0.1, min(20.0, float(params.get('frequency', 5))))
+    phase = max(0.0, min(360.0, float(params.get('phase', 0))))
+    
     direction = params.get('direction', 'horizontal')
+    if direction not in ['horizontal', 'vertical']:
+        direction = 'horizontal'
 
     img_array = np.array(image)
 
@@ -32,6 +39,9 @@ def apply_wave_distortion(image, params, selections=None):
     return Image.fromarray(result)
 
 def apply_distortion_to_region(region, waveform, amplitude, frequency, phase, direction):
+    if region.size == 0:
+        return region
+    
     height, width = region.shape[:2]
     
     if direction == 'horizontal':
@@ -51,18 +61,24 @@ def apply_distortion_to_region(region, waveform, amplitude, frequency, phase, di
     return region
 
 def generate_waveform(waveform, amplitude, frequency, phase, length):
+    if length <= 0:
+        return np.array([], dtype=int)
+    
     x = np.linspace(0, 2 * np.pi, length)
+    phase_rad = np.radians(phase)
+    
     if waveform == 'sine':
-        y = amplitude * np.sin(frequency * x + phase)
+        y = amplitude * np.sin(frequency * x + phase_rad)
     elif waveform == 'triangle':
-        y = amplitude * (2 / np.pi) * np.arcsin(np.sin(frequency * x + phase))
+        y = amplitude * (2 / np.pi) * np.arcsin(np.sin(frequency * x + phase_rad))
     elif waveform == 'square':
-        y = amplitude * np.sign(np.sin(frequency * x + phase))
+        y = amplitude * np.sign(np.sin(frequency * x + phase_rad))
     elif waveform == 'sawtooth':
-        y = amplitude * ((x + phase) % (2 * np.pi) / np.pi - 1)
+        y = amplitude * (((frequency * x + phase_rad) % (2 * np.pi)) / np.pi - 1)
     elif waveform == 'pulse':
-        y = amplitude * (np.sin(frequency * x + phase) > 0).astype(int)
+        y = amplitude * (np.sin(frequency * x + phase_rad) > 0).astype(float)
     else:
-        raise ValueError(f"Unsupported waveform: {waveform}")
+        # Default to sine if unknown waveform
+        y = amplitude * np.sin(frequency * x + phase_rad)
     
     return y.astype(int)

@@ -1,5 +1,5 @@
 import numpy as np
-from PIL import Image, ImageFilter
+from PIL import Image
 
 PARAMS_META = [
     {'name': 'edge_strength', 'type': 'scale', 'range': (1, 10), 'default': 5},
@@ -11,14 +11,21 @@ PARAMS_META = [
 ]
 
 def apply_edge_feedback(image, params, selections=None):
-    edge_strength = int(params.get('edge_strength', 3))
-    echo_distance = int(params.get('echo_distance', 10))
-    echo_blend = float(params.get('echo_blend', 50)) / 100.0
+    # Validate and clamp parameters
+    edge_strength = max(1, min(10, int(params.get('edge_strength', 3))))
+    echo_distance = max(1, min(30, int(params.get('echo_distance', 10))))
+    echo_blend = max(0.0, min(100.0, float(params.get('echo_blend', 50)))) / 100.0
+    
     direction = params.get('direction', 'all')
+    if direction not in ['all', 'horizontal', 'vertical']:
+        direction = 'all'
+    
     invert_edges = bool(params.get('invert_edges', False))
     colorize = bool(params.get('colorize', False))
     
     arr = np.array(image).astype(np.float32)
+    if arr.size == 0:
+        return image
     
     # Create a more aggressive edge detection using Sobel-like filters
     # Convert to grayscale for edge detection
