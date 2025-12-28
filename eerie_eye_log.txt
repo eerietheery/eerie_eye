@@ -1747,3 +1747,224 @@ _tkinter.TclError: cannot use geometry manager grid inside .!frame2.!frame which
 2025-08-07 13:44:45 - INFO - Cache hit. Starting from effect index 2.
 2025-08-07 13:44:47 - INFO - Cached result for effect stack of length 3
 2025-08-07 13:45:00 - INFO - Application closed
+2025-12-27 21:11:28 - INFO - Application started
+2025-12-27 21:11:39 - INFO - Effect cache cleared.
+2025-12-27 21:11:46 - INFO - [EffectFrame] get_effect_params returns: {'shift_r': 8.0, 'axis_r': 'horizontal', 'shift_g': 0.0, 'axis_g': 'horizontal', 'shift_b': 0.0, 'axis_b': 'horizontal'}
+2025-12-27 21:11:46 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:11:46 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:11:47 - INFO - [EffectFrame] get_effect_params returns: {'shift_r': 18.604651162790702, 'axis_r': 'horizontal', 'shift_g': 0.0, 'axis_g': 'horizontal', 'shift_b': 0.0, 'axis_b': 'horizontal'}
+2025-12-27 21:11:47 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:11:48 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:11:50 - INFO - [EffectFrame] get_effect_params returns: {'shift_r': 48.83720930232559, 'axis_r': 'horizontal', 'shift_g': -4.0, 'axis_g': 'horizontal', 'shift_b': 0.0, 'axis_b': 'horizontal'}
+2025-12-27 21:11:50 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:11:50 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:11:54 - INFO - [EffectFrame] get_effect_params returns: {'shift_r': 48.83720930232559, 'axis_r': 'horizontal', 'shift_g': -37.2093023255814, 'axis_g': 'horizontal', 'shift_b': 0.0, 'axis_b': 'horizontal'}
+2025-12-27 21:11:54 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:11:55 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:11:57 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 30.0, 'num_echoes': 3.0, 'decay_factor': 0.5, 'direction_angle': 0.0}
+2025-12-27 21:11:57 - INFO - Cache hit. Starting from effect index 1.
+2025-12-27 21:11:59 - INFO - Cached result for effect stack of length 2
+2025-12-27 21:12:04 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 30.0, 'num_echoes': 3.0, 'decay_factor': 0.508, 'direction_angle': 0.0}
+2025-12-27 21:12:04 - INFO - Cache hit. Starting from effect index 1.
+2025-12-27 21:12:06 - INFO - Cached result for effect stack of length 2
+2025-12-27 21:12:07 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 32.5, 'num_echoes': 3.0, 'decay_factor': 0.6953488372093023, 'direction_angle': 0.0}
+2025-12-27 21:12:07 - INFO - Cache hit. Starting from effect index 1.
+2025-12-27 21:12:09 - INFO - Cached result for effect stack of length 2
+2025-12-27 21:12:11 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 73.83720930232559, 'num_echoes': 2.98, 'decay_factor': 0.6953488372093023, 'direction_angle': 0.0}
+2025-12-27 21:12:11 - INFO - Cache hit. Starting from effect index 1.
+2025-12-27 21:12:12 - INFO - Cached result for effect stack of length 2
+2025-12-27 21:12:13 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 73.83720930232559, 'num_echoes': 6.7558139534883725, 'decay_factor': 0.6953488372093023, 'direction_angle': 45.800000000000004}
+2025-12-27 21:12:13 - INFO - Cache hit. Starting from effect index 1.
+2025-12-27 21:12:16 - INFO - Cached result for effect stack of length 2
+2025-12-27 21:12:16 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 73.83720930232559, 'num_echoes': 6.7558139534883725, 'decay_factor': 0.6953488372093023, 'direction_angle': 40.800000000000004}
+2025-12-27 21:12:16 - INFO - Cache hit. Starting from effect index 1.
+2025-12-27 21:12:19 - INFO - Cached result for effect stack of length 2
+2025-12-27 21:12:22 - INFO - [EffectFrame] get_effect_params returns: {'echo_intensity': 0.5, 'echo_distance': 20.0, 'echo_count': 3.0, 'echo_direction': 'horizontal'}
+2025-12-27 21:12:22 - INFO - Cache hit. Starting from effect index 2.
+2025-12-27 21:12:26 - INFO - Cached result for effect stack of length 3
+2025-12-27 21:12:27 - INFO - Application closed
+2025-12-27 21:17:13 - INFO - Application started
+2025-12-27 21:17:26 - INFO - Effect cache cleared.
+2025-12-27 21:17:29 - INFO - [EffectFrame] get_effect_params returns: {'edge_strength': 5.0, 'echo_distance': 8.0, 'echo_blend': 70.0, 'direction': 'all', 'invert_edges': False, 'colorize': True}
+2025-12-27 21:17:29 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:17:52 - INFO - [EffectFrame] get_effect_params returns: {'shift_r': 13.95348837209302, 'axis_r': 'horizontal', 'shift_g': -25.581395348837205, 'axis_g': 'horizontal', 'shift_b': 0.0, 'axis_b': 'horizontal'}
+2025-12-27 21:17:52 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:17:53 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:18:00 - INFO - Effect cache cleared.
+2025-12-27 21:18:03 - INFO - [EffectFrame] get_effect_params returns: {'shift_r': 13.95348837209302, 'axis_r': 'horizontal', 'shift_g': -25.581395348837205, 'axis_g': 'horizontal', 'shift_b': 0.0, 'axis_b': 'horizontal'}
+2025-12-27 21:18:03 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:18:04 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:48:39 - INFO - Application started
+2025-12-27 21:48:49 - INFO - Effect cache cleared.
+2025-12-27 21:48:55 - INFO - [EffectFrame] get_effect_params returns: {'offset': 8.0, 'direction': 'horizontal', 'wrap_mode': 'circular', 'glitch_pattern': 'wave', 'chaos_factor': 0.3}
+2025-12-27 21:48:55 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:48:55 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:48:57 - INFO - [EffectFrame] get_effect_params returns: {'offset': 12.769230769230768, 'direction': 'horizontal', 'wrap_mode': 'circular', 'glitch_pattern': 'wave', 'chaos_factor': 0.3}
+2025-12-27 21:48:57 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:48:57 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:48:58 - INFO - [EffectFrame] get_effect_params returns: {'offset': 16.348837209302324, 'direction': 'horizontal', 'wrap_mode': 'circular', 'glitch_pattern': 'wave', 'chaos_factor': 0.3}
+2025-12-27 21:48:58 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:48:58 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:49:04 - INFO - [EffectFrame] get_effect_params returns: {'offset': 39.372093023255815, 'direction': 'horizontal', 'wrap_mode': 'reflect', 'glitch_pattern': 'wave', 'chaos_factor': 0.3}
+2025-12-27 21:49:04 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:49:04 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:49:06 - INFO - [EffectFrame] get_effect_params returns: {'offset': 39.372093023255815, 'direction': 'horizontal', 'wrap_mode': 'reflect', 'glitch_pattern': 'wave', 'chaos_factor': 0.3}
+2025-12-27 21:49:06 - INFO - Cache hit. Starting from effect index 1.
+2025-12-27 21:49:06 - INFO - No new effects to apply, returning cached image.
+2025-12-27 21:49:11 - INFO - [EffectFrame] get_effect_params returns: {'offset': 39.372093023255815, 'direction': 'horizontal', 'wrap_mode': 'reflect', 'glitch_pattern': 'wave', 'chaos_factor': 0.3}
+2025-12-27 21:49:11 - INFO - Cache hit. Starting from effect index 1.
+2025-12-27 21:49:12 - INFO - Cached result for effect stack of length 2
+2025-12-27 21:49:13 - INFO - [EffectFrame] get_effect_params returns: {'offset': 41.15384615384615, 'direction': 'horizontal', 'wrap_mode': 'reflect', 'glitch_pattern': 'wave', 'chaos_factor': 0.3}
+2025-12-27 21:49:13 - INFO - Cache hit. Starting from effect index 2.
+2025-12-27 21:49:14 - INFO - Cached result for effect stack of length 3
+2025-12-27 21:49:15 - INFO - [EffectFrame] get_effect_params returns: {'offset': 18.651162790697676, 'direction': 'horizontal', 'wrap_mode': 'reflect', 'glitch_pattern': 'wave', 'chaos_factor': 0.3}
+2025-12-27 21:49:15 - INFO - Cache hit. Starting from effect index 2.
+2025-12-27 21:49:15 - INFO - Cached result for effect stack of length 3
+2025-12-27 21:49:18 - INFO - [EffectFrame] get_effect_params returns: {'offset': 18.651162790697676, 'direction': 'horizontal', 'wrap_mode': 'reflect', 'glitch_pattern': 'wave', 'chaos_factor': 0.3}
+2025-12-27 21:49:18 - INFO - Cache hit. Starting from effect index 3.
+2025-12-27 21:49:18 - INFO - No new effects to apply, returning cached image.
+2025-12-27 21:49:22 - INFO - Effect cache cleared.
+2025-12-27 21:49:27 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 100.0, 'upper_bound': 200.0, 'mode': 'threshold', 'direction_angle': 90.0, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:49:27 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:49:30 - ERROR - Error in effect 'apply_pixel_sort': cannot unpack non-iterable int object
+2025-12-27 21:49:30 - ERROR - Parameters: {'lower_bound': 100.0, 'upper_bound': 200.0, 'mode': 'threshold', 'direction_angle': 90.0, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:49:30 - ERROR - Selections: None
+2025-12-27 21:49:30 - ERROR - Error processing effect: cannot unpack non-iterable int object
+2025-12-27 21:49:34 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 63.75, 'upper_bound': 200.0, 'mode': 'threshold', 'direction_angle': 90.0, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:49:34 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:49:37 - ERROR - Error in effect 'apply_pixel_sort': cannot unpack non-iterable int object
+2025-12-27 21:49:37 - ERROR - Parameters: {'lower_bound': 63.75, 'upper_bound': 200.0, 'mode': 'threshold', 'direction_angle': 90.0, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:49:37 - ERROR - Selections: None
+2025-12-27 21:49:37 - ERROR - Error processing effect: cannot unpack non-iterable int object
+2025-12-27 21:49:48 - INFO - Application closed
+2025-12-27 21:51:13 - INFO - Application started
+2025-12-27 21:51:22 - INFO - Effect cache cleared.
+2025-12-27 21:51:26 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 100.0, 'upper_bound': 200.0, 'mode': 'threshold', 'direction_angle': 90.0, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:51:26 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:51:29 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:51:31 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 100.0, 'upper_bound': 183.6, 'mode': 'threshold', 'direction_angle': 90.0, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:51:31 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:51:34 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:51:37 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 189.7, 'upper_bound': 112.67441860465117, 'mode': 'threshold', 'direction_angle': 90.0, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:51:37 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:51:39 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:51:40 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 189.7, 'upper_bound': 112.67441860465117, 'mode': 'threshold', 'direction_angle': 115.2, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:51:41 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:51:45 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:51:47 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 173.4, 'upper_bound': 112.67441860465117, 'mode': 'threshold', 'direction_angle': 242.7906976744186, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:51:47 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:51:51 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:51:53 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 44.47674418604651, 'upper_bound': 51.0, 'mode': 'threshold', 'direction_angle': 242.7906976744186, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:51:53 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:51:57 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:52:00 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 44.47674418604651, 'upper_bound': 216.75, 'mode': 'threshold', 'direction_angle': 242.7906976744186, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:52:00 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:52:05 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:52:08 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 31.25, 'upper_bound': 255.0, 'mode': 'threshold', 'direction_angle': 242.7906976744186, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:52:08 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:52:13 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:52:14 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 31.25, 'upper_bound': 255.0, 'mode': 'threshold', 'direction_angle': 258.6, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:52:14 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:52:19 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:52:22 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 0.0, 'upper_bound': 255.0, 'mode': 'threshold', 'direction_angle': 191.8, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:52:22 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:52:26 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:52:28 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 0.0, 'upper_bound': 255.0, 'mode': 'threshold', 'direction_angle': 190.8, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:52:28 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:52:31 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:52:40 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 0.0, 'upper_bound': 255.0, 'mode': 'edge', 'direction_angle': 99.80000000000001, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:52:40 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:52:43 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:52:45 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 255.0, 'upper_bound': 113.75, 'mode': 'edge', 'direction_angle': 99.80000000000001, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:52:45 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:52:48 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:52:54 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 255.0, 'upper_bound': 32.616279069767444, 'mode': 'edge', 'direction_angle': 115.2, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:52:54 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:52:58 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:53:02 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 255.0, 'upper_bound': 32.616279069767444, 'mode': 'interval', 'direction_angle': 0.0, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:53:02 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:53:05 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:53:06 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 41.51162790697675, 'upper_bound': 32.616279069767444, 'mode': 'interval', 'direction_angle': 0.0, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:53:06 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:53:09 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:53:19 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 41.51162790697675, 'upper_bound': 182.04999999999998, 'mode': 'interval', 'direction_angle': 0.0, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:53:19 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:53:22 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:53:23 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 41.51162790697675, 'upper_bound': 197.35, 'mode': 'interval', 'direction_angle': 56.6, 'sort_by': 'brightness', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:53:23 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:53:28 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:53:51 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 41.51162790697675, 'upper_bound': 197.35, 'mode': 'edge', 'direction_angle': 56.6, 'sort_by': 'hue', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:53:51 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:53:57 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:54:00 - INFO - [EffectFrame] get_effect_params returns: {'lower_bound': 41.51162790697675, 'upper_bound': 197.35, 'mode': 'edge', 'direction_angle': 164.6, 'sort_by': 'hue', 'randomness': 0.0, 'reverse': False}
+2025-12-27 21:54:00 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:54:05 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:54:07 - INFO - [EffectFrame] get_effect_params returns: {'zoom_factor': 1.05, 'iterations': 4.0, 'rotation': 0.0, 'blend': 50.0, 'center_x': 0.5, 'center_y': 0.5, 'color_shift': 0.0}
+2025-12-27 21:54:07 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:54:10 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:54:14 - INFO - [EffectFrame] get_effect_params returns: {'zoom_factor': 1.01, 'iterations': 4.140000000000001, 'rotation': 0.0, 'blend': 50.0, 'center_x': 0.5, 'center_y': 0.5, 'color_shift': 0.0}
+2025-12-27 21:54:14 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:54:18 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:54:22 - INFO - [EffectFrame] get_effect_params returns: {'zoom_factor': 1.01, 'iterations': 4.140000000000001, 'rotation': 0.0, 'blend': 67.44186046511628, 'center_x': 0.5, 'center_y': 0.5, 'color_shift': 6.0}
+2025-12-27 21:54:23 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:54:27 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:54:29 - INFO - [EffectFrame] get_effect_params returns: {'zoom_factor': 1.01, 'iterations': 4.140000000000001, 'rotation': 0.0, 'blend': 67.44186046511628, 'center_x': 0.5, 'center_y': 0.5, 'color_shift': 28.000000000000004}
+2025-12-27 21:54:29 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:54:34 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:54:37 - INFO - [EffectFrame] get_effect_params returns: {'zoom_factor': 1.01, 'iterations': 4.140000000000001, 'rotation': 0.0, 'blend': 67.44186046511628, 'center_x': 0.5, 'center_y': 0.5, 'color_shift': 76.0}
+2025-12-27 21:54:37 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:54:41 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:54:47 - INFO - Effect cache cleared.
+2025-12-27 21:54:53 - INFO - [EffectFrame] get_effect_params returns: {'zoom_factor': 1.01, 'iterations': 4.140000000000001, 'rotation': 262.8, 'blend': 67.44186046511628, 'center_x': 0.5, 'center_y': 0.5, 'color_shift': 11.627906976744185}
+2025-12-27 21:54:53 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:55:01 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:55:04 - INFO - [EffectFrame] get_effect_params returns: {'zoom_factor': 1.6661627906976744, 'iterations': 4.140000000000001, 'rotation': 136.8, 'blend': 67.44186046511628, 'center_x': 0.5, 'center_y': 0.5, 'color_shift': 11.627906976744185}
+2025-12-27 21:55:04 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:55:11 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:55:15 - INFO - Effect cache cleared.
+2025-12-27 21:55:18 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 30.0, 'num_echoes': 3.0, 'decay_factor': 0.5, 'direction_angle': 0.0}
+2025-12-27 21:55:18 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:55:19 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:55:25 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 19.799999999999997, 'num_echoes': 3.0, 'decay_factor': 0.5, 'direction_angle': 0.0}
+2025-12-27 21:55:25 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:55:26 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:55:27 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 14.799999999999997, 'num_echoes': 3.0, 'decay_factor': 0.5, 'direction_angle': 0.0}
+2025-12-27 21:55:27 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:55:27 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:55:31 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 40.5, 'num_echoes': 3.0, 'decay_factor': 0.5, 'direction_angle': 0.0}
+2025-12-27 21:55:31 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:55:33 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:55:35 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 40.5, 'num_echoes': 3.0, 'decay_factor': 0.9, 'direction_angle': 0.0}
+2025-12-27 21:55:35 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:55:36 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:55:41 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 41.5, 'num_echoes': 3.0, 'decay_factor': 0.9, 'direction_angle': 0.0}
+2025-12-27 21:55:41 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:55:42 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:55:45 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 16.27906976744186, 'num_echoes': 3.0, 'decay_factor': 0.9, 'direction_angle': 0.0}
+2025-12-27 21:55:45 - INFO - Cache hit. Starting from effect index 0.
+2025-12-27 21:55:46 - INFO - Cached result for effect stack of length 1
+2025-12-27 21:55:47 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 16.27906976744186, 'num_echoes': 3.25, 'decay_factor': 0.9, 'direction_angle': 0.0}
+2025-12-27 21:55:47 - INFO - Cache hit. Starting from effect index 1.
+2025-12-27 21:55:48 - INFO - Cached result for effect stack of length 2
+2025-12-27 21:55:51 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 16.27906976744186, 'num_echoes': 5.709302325581396, 'decay_factor': 0.1, 'direction_angle': 0.0}
+2025-12-27 21:55:51 - INFO - Cache hit. Starting from effect index 1.
+2025-12-27 21:55:51 - INFO - Cached result for effect stack of length 2
+2025-12-27 21:55:52 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 16.27906976744186, 'num_echoes': 5.709302325581396, 'decay_factor': 0.15600000000000003, 'direction_angle': 0.0}
+2025-12-27 21:55:52 - INFO - Cache hit. Starting from effect index 1.
+2025-12-27 21:55:53 - INFO - Cached result for effect stack of length 2
+2025-12-27 21:55:54 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 16.27906976744186, 'num_echoes': 5.709302325581396, 'decay_factor': 0.6395348837209303, 'direction_angle': 0.0}
+2025-12-27 21:55:54 - INFO - Cache hit. Starting from effect index 1.
+2025-12-27 21:55:55 - INFO - Cached result for effect stack of length 2
+2025-12-27 21:55:55 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 26.1, 'num_echoes': 5.709302325581396, 'decay_factor': 0.25813953488372093, 'direction_angle': 0.0}
+2025-12-27 21:55:56 - INFO - Cache hit. Starting from effect index 1.
+2025-12-27 21:55:56 - INFO - Cached result for effect stack of length 2
+2025-12-27 21:55:57 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 17.1, 'num_echoes': 5.709302325581396, 'decay_factor': 0.25813953488372093, 'direction_angle': 0.0}
+2025-12-27 21:55:57 - INFO - Cache hit. Starting from effect index 1.
+2025-12-27 21:55:58 - INFO - Cached result for effect stack of length 2
+2025-12-27 21:55:59 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 35.116279069767444, 'num_echoes': 5.709302325581396, 'decay_factor': 0.25813953488372093, 'direction_angle': 0.0}
+2025-12-27 21:55:59 - INFO - Cache hit. Starting from effect index 1.
+2025-12-27 21:55:59 - INFO - Cached result for effect stack of length 2
+2025-12-27 21:56:01 - INFO - [EffectFrame] get_effect_params returns: {'delay_time': 86.3953488372093, 'num_echoes': 5.709302325581396, 'decay_factor': 0.25813953488372093, 'direction_angle': 0.0}
+2025-12-27 21:56:01 - INFO - Cache hit. Starting from effect index 1.
+2025-12-27 21:56:02 - INFO - Cached result for effect stack of length 2
+2025-12-27 21:56:08 - INFO - Application closed

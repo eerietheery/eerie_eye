@@ -103,24 +103,26 @@ class DataManager:
         self._generate_waveforms()
 
     def _displace_and_insert(self, img_array, channel, insert_col, data_to_insert):
-        """Helper to insert data into a channel with wrap-around."""
+        """Helper to insert data into a channel at a specific column with wrap-around."""
         height, width, _ = img_array.shape
         insert_width = data_to_insert.shape[1]
-        
-        # Roll the entire channel to make space for the new data at the beginning
-        rolled_channel = np.roll(img_array[:, :, channel], insert_width, axis=1)
-        
-        # Place the new data at the insertion point
+        if insert_width == 0 or width == 0:
+            return
+
+        insert_col %= width
         end_insert = insert_col + insert_width
+
+        channel_slice = img_array[:, :, channel]
+
         if end_insert <= width:
-            rolled_channel[:, insert_col:end_insert] = data_to_insert
-        else: # Handle wrap-around insertion
+            channel_slice[:, insert_col:end_insert] = data_to_insert
+        else:
             part1_width = width - insert_col
             part2_width = end_insert - width
-            rolled_channel[:, insert_col:width] = data_to_insert[:, :part1_width]
-            rolled_channel[:, :part2_width] = data_to_insert[:, part1_width:]
-            
-        img_array[:, :, channel] = rolled_channel
+            channel_slice[:, insert_col:width] = data_to_insert[:, :part1_width]
+            channel_slice[:, :part2_width] = data_to_insert[:, part1_width:]
+
+        img_array[:, :, channel] = channel_slice
 
     def _canvas_to_image_coords(self, x1, x2, image_width):
         canvas_width = self.canvas.winfo_width()

@@ -26,6 +26,26 @@ def apply_edge_feedback(image, params, selections=None):
     arr = np.array(image).astype(np.float32)
     if arr.size == 0:
         return image
+    if arr.ndim == 2:
+        arr = np.stack([arr] * 3, axis=2)
+        is_grayscale = True
+    else:
+        is_grayscale = False
+
+    original_pixels = arr.copy()
+    height, width, channels = arr.shape
+
+    selection_mask = None
+    if selections:
+        selection_mask = np.zeros((height, width, channels), dtype=bool)
+        for start, end, channel in selections:
+            if not (0 <= channel < channels):
+                continue
+            start_clamped = max(0, min(start, width))
+            end_clamped = max(0, min(end, width))
+            if start_clamped >= end_clamped:
+                continue
+            selection_mask[:, start_clamped:end_clamped, channel] = True
     
     # Create a more aggressive edge detection using Sobel-like filters
     # Convert to grayscale for edge detection
@@ -94,4 +114,19 @@ def apply_edge_feedback(image, params, selections=None):
         result = (1 - echo_blend) * arr + echo_blend * echoed
     
     result = np.clip(result, 0, 255).astype(np.uint8)
-    return Image.fromarray(result)
+
+    if selection_mask is not None:
+        final_image = original_pixels.astype(np.uint8)
+        for c in range(channels):
+            mask = selection_mask[:, :, c]
+            if not mask.any():
+                continue
+            channel_view = final_image[:, :, c]
+            channel_view[mask] = result[:, :, c][mask]
+    else:
+        final_image = result
+
+    if is_grayscale:
+        final_image = final_image[:, :, 0]
+
+    return Image.fromarray(final_image)

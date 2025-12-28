@@ -38,6 +38,10 @@ def apply_pixel_sort(image, params, selections=None):
     reverse = bool(params.get('reverse', False))
 
     img_array = np.array(image)
+    if img_array.ndim == 2:
+        img_array = np.stack([img_array] * 3, axis=2)
+    img_array = img_array.astype(np.uint8, copy=False)
+    orig_h, orig_w = img_array.shape[:2]
     
     # Rotate image to make sorting direction always horizontal
     rotated_array = np.array(Image.fromarray(img_array).rotate(-direction_angle, resample=Image.Resampling.NEAREST, expand=True))
@@ -49,7 +53,6 @@ def apply_pixel_sort(image, params, selections=None):
     final_img = Image.fromarray(processed_array).rotate(direction_angle, resample=Image.Resampling.NEAREST, expand=True)
     
     # Crop to original dimensions
-    orig_w, orig_h = image.size
     final_w, final_h = final_img.size
     left = (final_w - orig_w) // 2
     top = (final_h - orig_h) // 2
@@ -61,10 +64,18 @@ def apply_pixel_sort(image, params, selections=None):
     # If selections are provided, mask the result
     if selections:
         mask = np.zeros_like(img_array, dtype=bool)
-        for start, end, _ in selections:
-            mask[:, start:end, :] = True
-        
-        # Blend the original and sorted arrays based on the mask
+        height, width = img_array.shape[:2]
+        channels = img_array.shape[2]
+        for start, end, channel in selections:
+            start_clamped = max(0, min(int(start), width))
+            end_clamped = max(0, min(int(end), width))
+            if start_clamped >= end_clamped:
+                continue
+            if isinstance(channel, int) and 0 <= channel < channels:
+                mask[:, start_clamped:end_clamped, channel] = True
+            else:
+                mask[:, start_clamped:end_clamped, :] = True
+
         final_array = np.where(mask, final_array, img_array)
 
     # Ensure result is uint8 for image assignment

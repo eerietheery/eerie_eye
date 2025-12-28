@@ -21,15 +21,27 @@ def apply_echo(image, params, selections=None):
         echo_direction = 'horizontal'
 
     img_array = np.array(image).astype(np.float32)
-    
-    # Create a mask if selections are provided
-    mask = np.zeros(img_array.shape[:2], dtype=bool)
+    if img_array.ndim == 2:
+        img_array = img_array[:, :, np.newaxis]
+        is_grayscale = True
+    else:
+        is_grayscale = False
+
+    height, width, channels = img_array.shape
+
+    # Create a per-channel mask if selections are provided
+    selection_mask = np.zeros((height, width, channels), dtype=bool)
     if selections:
         for start, end, channel in selections:
-            # This effect applies to all channels in the region
-            mask[:, start:end] = True
+            if not (0 <= channel < channels):
+                continue
+            start_clamped = max(0, min(start, width))
+            end_clamped = max(0, min(end, width))
+            if start_clamped >= end_clamped:
+                continue
+            selection_mask[:, start_clamped:end_clamped, channel] = True
     else:
-        mask.fill(True)
+        selection_mask[:] = True
 
     # Create a collection of echoes
     echoes = []
@@ -51,9 +63,19 @@ def apply_echo(image, params, selections=None):
     # Blend the echoes with the original image
     result = img_array.copy()
     for echo, intensity in echoes:
-        for c in range(img_array.shape[2]):
-            alpha = intensity
-            result[:,:,c][mask] = alpha * echo[:,:,c][mask] + (1 - alpha) * result[:,:,c][mask]
+        alpha = intensity
+        for c in range(channels):
+            channel_mask = selection_mask[:, :, c]
+            if not channel_mask.any():
+                continue
+            channel_result = result[:, :, c]
+            channel_echo = echo[:, :, c]
+            channel_result[channel_mask] = (
+                alpha * channel_echo[channel_mask]
+                + (1 - alpha) * channel_result[channel_mask]
+            )
     
     result = np.clip(result, 0, 255).astype(np.uint8)
+    if is_grayscale:
+        result = result[:, :, 0]
     return Image.fromarray(result)

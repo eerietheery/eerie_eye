@@ -25,40 +25,68 @@ def apply_wave_distortion(image, params, selections=None):
         direction = 'horizontal'
 
     img_array = np.array(image)
+    was_grayscale = False
+    if img_array.ndim == 2:
+        img_array = np.stack([img_array] * 3, axis=2)
+        was_grayscale = True
 
     if selections:
+        height, width = img_array.shape[:2]
+        channels = img_array.shape[2] if img_array.ndim == 3 else 1
         for start, end, channel in selections:
-            # The selection is ALWAYS horizontal. 'direction' affects processing inside.
-            region = img_array[:, start:end, channel]
+            if channels == 1:
+                channel = 0
+            if not (isinstance(channel, int) and 0 <= channel < channels):
+                continue
+            start_clamped = max(0, min(int(start), width))
+            end_clamped = max(0, min(int(end), width))
+            if start_clamped >= end_clamped:
+                continue
+            region = img_array[:, start_clamped:end_clamped, channel]
             distorted_region = apply_distortion_to_region(region, waveform, amplitude, frequency, phase, direction)
-            img_array[:, start:end, channel] = distorted_region
+            img_array[:, start_clamped:end_clamped, channel] = distorted_region
     else:
         img_array = apply_distortion_to_region(img_array, waveform, amplitude, frequency, phase, direction)
 
     result = np.clip(img_array, 0, 255).astype(np.uint8)
+    if was_grayscale:
+        result = result[:, :, 0]
     return Image.fromarray(result)
 
 def apply_distortion_to_region(region, waveform, amplitude, frequency, phase, direction):
     if region.size == 0:
         return region
-    
-    height, width = region.shape[:2]
-    
-    if direction == 'horizontal':
-        axis = np.arange(width)
-    else:  # vertical
-        axis = np.arange(height)
 
-    displacement = generate_waveform(waveform, amplitude, frequency, phase, len(axis))
+    if region.ndim == 2:
+        return distort_single_channel(region, waveform, amplitude, frequency, phase, direction)
+
+    result = region.copy()
+    for c in range(result.shape[2]):
+        result[:, :, c] = distort_single_channel(result[:, :, c], waveform, amplitude, frequency, phase, direction)
+    return result
+
+def distort_single_channel(channel_data, waveform, amplitude, frequency, phase, direction):
+    channel = channel_data.copy()
+    height, width = channel.shape
+
+    length = width if direction == 'horizontal' else height
+    if length <= 0:
+        return channel
+
+    displacement = generate_waveform(waveform, amplitude, frequency, phase, length)
+    if len(displacement) == 0:
+        return channel
 
     if direction == 'horizontal':
-        for i in range(height):
-            region[i] = np.roll(region[i], displacement[i % len(displacement)], axis=0)
+        for row in range(height):
+            shift = displacement[row % len(displacement)]
+            channel[row, :] = np.roll(channel[row, :], shift)
     else:
-        for i in range(width):
-            region[:, i] = np.roll(region[:, i], displacement[i % len(displacement)], axis=0)
+        for col in range(width):
+            shift = displacement[col % len(displacement)]
+            channel[:, col] = np.roll(channel[:, col], shift)
 
-    return region
+    return channel
 
 def generate_waveform(waveform, amplitude, frequency, phase, length):
     if length <= 0:

@@ -1,0 +1,5 @@
+numpy
+Pillow
+
+# Optional GPU acceleration (install the wheel that matches your CUDA runtime)
+# cupy-cuda12x

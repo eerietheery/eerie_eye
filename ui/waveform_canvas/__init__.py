@@ -31,6 +31,8 @@ class WaveformCanvas:
     def set_image(self, image):
         """Sets the current working image for the canvas."""
         self.data_manager.set_image(image)
+        if hasattr(self.data_manager, 'image') and self.data_manager.image is not None:
+            self.selection_manager.handle_image_size_change(self.data_manager.image.width)
         self.drawer.draw()
 
     def get_selections(self):

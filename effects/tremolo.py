@@ -77,16 +77,23 @@ def apply_dynamic_tremolo(image, params, selections=None):
     y_coords, x_coords = np.meshgrid(range(height), range(width), indexing='ij')
     x_coords_displaced = (x_coords + x_displacement) % width
     y_coords_displaced = (y_coords + y_displacement) % height
-    # Directly manipulate image pixels
+    displaced = img_array.copy()
     for c in range(3):
-        img_array[:,:,c] = img_array[:,:,c][y_coords_displaced, x_coords_displaced]
+        displaced[:, :, c] = img_array[:, :, c][y_coords_displaced, x_coords_displaced]
+
     if selections:
+        result = img_array.copy()
         for start, end, channel in selections:
-            # Only manipulate selected region
-            img_array[:, start:end, channel] = img_array[:, start:end, channel]
-        return Image.fromarray(img_array)
-    else:
-        return Image.fromarray(img_array.astype(np.uint8))
+            if not (isinstance(channel, int) and 0 <= channel < 3):
+                continue
+            start_clamped = max(0, min(start, width))
+            end_clamped = max(0, min(end, width))
+            if start_clamped >= end_clamped:
+                continue
+            result[:, start_clamped:end_clamped, channel] = displaced[:, start_clamped:end_clamped, channel]
+        return Image.fromarray(result.astype(np.uint8))
+
+    return Image.fromarray(displaced.astype(np.uint8))
 
 def generate_wave(wave_type, lfo, t, phase):
     if len(t) == 0:

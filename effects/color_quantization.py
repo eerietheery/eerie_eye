@@ -89,11 +89,17 @@ def process_quantization(img_array, num_colors, dither_amount, dither_mode, sele
     # Vectorized quantization
     if selections:
         for start, end, channel in selections:
-            region = img_array[:, start:end, channel]
+            if not (isinstance(channel, int) and 0 <= channel < channels):
+                continue
+            start_clamped = max(0, min(int(start), width))
+            end_clamped = max(0, min(int(end), width))
+            if start_clamped >= end_clamped:
+                continue
+            region = img_array[:, start_clamped:end_clamped, channel]
             # Find closest level for each pixel
             distances = np.abs(region[:, :, np.newaxis] - levels[np.newaxis, np.newaxis, :])
             closest_indices = np.argmin(distances, axis=2)
-            img_array[:, start:end, channel] = levels[closest_indices]
+            img_array[:, start_clamped:end_clamped, channel] = levels[closest_indices]
     else:
         # Quantize all channels at once
         distances = np.abs(img_array[:, :, :, np.newaxis] - levels[np.newaxis, np.newaxis, np.newaxis, :])
@@ -119,6 +125,8 @@ def process_in_chunks(img_array, num_colors, dither_amount, dither_mode, chunk_s
             if selections:
                 chunk_selections = []
                 for start, end, channel in selections:
+                    if not (isinstance(channel, int) and 0 <= channel < channels):
+                        continue
                     if start < x_end and end > x:
                         chunk_start = max(0, start - x)
                         chunk_end = min(x_end - x, end - x)

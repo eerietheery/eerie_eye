@@ -6,6 +6,7 @@ class SelectionManager:
         self.data_manager = main_canvas.data_manager
         self.selections = []
         self.active_selection = None
+        self.last_image_width = None
         
         # State for creating a new selection
         self.dragging = False
@@ -110,3 +111,13 @@ class SelectionManager:
                 self.active_selection = None
             elif self.active_selection is not None and self.active_selection > index:
                 self.active_selection -= 1
+
+    def handle_image_size_change(self, new_width):
+        if new_width is None:
+            return
+        if self.last_image_width is None:
+            self.last_image_width = new_width
+            return
+        if new_width != self.last_image_width:
+            self.clear_selections()
+            self.last_image_width = new_width

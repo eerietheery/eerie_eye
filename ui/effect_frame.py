@@ -158,7 +158,7 @@ class EffectFrame:
             combo.bind('<<ComboboxSelected>>', self.on_slider_change)
             return combo
             
-        elif widget_type == 'checkbutton':
+        elif widget_type in ('checkbutton', 'checkbox'):
             var = tk.BooleanVar(value=default_val)
             check = tk.Checkbutton(master, variable=var, command=self.on_slider_change)
             check.var = var # Attach var to retrieve value later

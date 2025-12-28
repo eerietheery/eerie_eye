@@ -4,7 +4,7 @@ Eerie Eye is a desktop application for creative audio and image manipulation, fe
 
 ## About
 
-Eerie Eye is not just an audio tool—it's a powerful image glitcher! Effortlessly create wild, surreal, and experimental visuals using a suite of glitch and distortion effects. Whether you want to pixel sort, channel shift, or apply wave distortions, Eerie Eye makes it easy to turn ordinary images into eye-catching art.
+image glitcher
 
 ## Features
 

@@ -21,6 +21,7 @@ class EerieEye:
         self.is_processing_preview = False
         self.current_image = None
         self.preview_mode = True
+        self.last_processed_apply_job_id = 0
         
         self.setup_ui()
     
@@ -133,15 +134,18 @@ class EerieEye:
     def process_queue(self):
         try:
             while not self.result_queue.empty():
-                image, is_preview, error = self.result_queue.get_nowait()
-                
-                # Always reset the preview flag once a result comes in for it
+                image, is_preview, error, job_id = self.result_queue.get_nowait()
+
                 if is_preview:
                     self.is_processing_preview = False
 
                 if error:
                     logging.error(f"Error processing effect: {error}")
                     messagebox.showerror("Error", f"Failed to apply effect: {error}")
+                    continue
+
+                if is_preview and job_id <= self.last_processed_apply_job_id:
+                    # A newer committed result already exists; ignore stale preview output.
                     continue
 
                 if image:
@@ -151,6 +155,7 @@ class EerieEye:
                     
                     # If it's not a preview, also update the official "current_image" state
                     if not is_preview:
+                        self.last_processed_apply_job_id = job_id
                         self.current_image = image
         except queue.Empty:
             pass
@@ -167,7 +172,9 @@ class EerieEye:
         selections = self.waveform_canvas.get_selections()
         
         try:
-            self.app_logic.apply_glitch(effect_type, params, selections)
+            job_id = self.app_logic.apply_glitch(effect_type, params, selections)
+            if job_id:
+                logging.debug(f"Queued apply job {job_id} for effect '{effect_type}'")
         except ValueError as e:
             messagebox.showwarning("Warning", str(e))
 
@@ -178,9 +185,11 @@ class EerieEye:
         effect_type = self.effect_frame.get_effect_type()
         params = self.effect_frame.get_effect_params()
         selections = self.waveform_canvas.get_selections()
-        
-        self.is_processing_preview = True
-        self.app_logic.apply_glitch_realtime(effect_type, params, selections)
+
+        job_id = self.app_logic.apply_glitch_realtime(effect_type, params, selections)
+        if job_id:
+            logging.debug(f"Queued preview job {job_id} for effect '{effect_type}'")
+            self.is_processing_preview = True
 
     def display_image(self, image):
         if isinstance(image, Image.Image):

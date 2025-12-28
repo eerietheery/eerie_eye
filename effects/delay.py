@@ -27,20 +27,30 @@ def apply_delay_effect(image, params, selections=None):
     dx = np.cos(angle_rad)
     dy = np.sin(angle_rad)
     
-    result = img_array * 0.6
+    result = img_array.copy()
+    max_possible = 1.0 + sum(decay_factor ** i for i in range(1, num_echoes + 1))
 
     if selections:
         for start, end, channel in selections:
-            channel_data = img_array[:, start:end, channel]
-            result[:, start:end, channel] = apply_delay_to_channel(
-                channel_data, delay_time, num_echoes, decay_factor, dx, dy, start, end - start, height)
+            if not (0 <= channel < channels) or start >= end:
+                continue
+            start_clamped = max(0, min(start, width))
+            end_clamped = max(0, min(end, width))
+            if start_clamped >= end_clamped:
+                continue
+
+            channel_data = img_array[:, start_clamped:end_clamped, channel]
+            processed = apply_delay_to_channel(
+                channel_data, delay_time, num_echoes, decay_factor, dx, dy,
+                start_clamped, end_clamped - start_clamped, height)
+            processed /= max_possible
+            result[:, start_clamped:end_clamped, channel] = processed
     else:
         for c in range(channels):
-            result[:, :, c] = apply_delay_to_channel(
+            processed = apply_delay_to_channel(
                 img_array[:, :, c], delay_time, num_echoes, decay_factor, dx, dy, 0, width, height)
-
-    max_possible = 1.0 + sum(decay_factor ** i for i in range(1, num_echoes + 1))
-    result = result / max_possible
+            processed /= max_possible
+            result[:, :, c] = processed
 
     result = np.clip(result, 0, 255).astype(np.uint8)
     return Image.fromarray(result)
