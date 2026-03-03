@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eerie Eye - Glitch Image Editor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Eerie Eye</h1>
+            <p class="subtitle">Glitch Image Editor</p>
+        </header>
+        
+        <main>
+            <aside class="control-panel">
+                <div class="section">
+                    <h2>Image</h2>
+                    <div class="button-group">
+                        <input type="file" id="imageInput" accept="image/*" hidden>
+                        <button id="openBtn" class="btn btn-primary">Open Image</button>
+                        <button id="saveBtn" class="btn btn-secondary" disabled>Save Image</button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Effect</h2>
+                    <select id="effectSelect" class="effect-select">
+                        <option value="">-- Select Effect --</option>
+                    </select>
+                </div>
+
+                <div class="section">
+                    <h2>Parameters</h2>
+                    <div id="paramsContainer" class="params-container">
+                        <p class="hint">Select an effect to see parameters</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="button-group">
+                        <button id="applyBtn" class="btn btn-primary" disabled>Apply Effect</button>
+                        <button id="resetBtn" class="btn btn-secondary" disabled>Reset Image</button>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="canvas-area">
+                <div class="canvas-container">
+                    <canvas id="imageCanvas"></canvas>
+                    <div id="dropZone" class="drop-zone">
+                        <p>Drop an image here or click "Open Image"</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

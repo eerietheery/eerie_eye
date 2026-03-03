@@ -1,5 +1,6 @@
 numpy
 Pillow
+flask>=3.0.3
 
 # Optional GPU acceleration (install the wheel that matches your CUDA runtime)
 # cupy-cuda12x
