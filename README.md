@@ -1,10 +1,30 @@
 # Eerie Eye 2.1
 
-Eerie Eye is a desktop application for creative audio and image manipulation, featuring a modular effects system and a user-friendly interface built with Tkinter.
+Eerie Eye is a desktop application for creative audio and image manipulation, featuring a modular effects system and a user-friendly interface built with Tkinter. A web interface is also available.
 
 ## About
 
 image glitcher
+
+## Running the Application
+
+### Desktop Application (Tkinter)
+```bash
+pip install -r requirements.txt
+python main.py
+```
+
+### Web Application (Flask)
+```bash
+pip install -r requirements.txt
+python -m webapp.app
+```
+Then open http://127.0.0.1:5000 in your browser.
+
+To enable debug mode (development only):
+```bash
+FLASK_DEBUG=true python -m webapp.app
+```
 
 ## Features
 
