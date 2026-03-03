@@ -1,13 +1,19 @@
 // webapp/static/js/app.js
 'use strict';
 
+// Import client-side effects
+import { hasClientEffect, applyClientEffect, getClientEffects } from './effects/index.js';
+
 class EerieEyeApp {
     constructor() {
         this.canvas = document.getElementById('imageCanvas');
         this.ctx = this.canvas.getContext('2d');
         this.originalImage = null;
         this.currentImage = null;
+        this.originalImageData = null;
         this.effects = {};
+        this.previewTimeout = null;
+        this.isPreviewEnabled = true;
         
         this.initElements();
         this.initEventListeners();
@@ -23,6 +29,7 @@ class EerieEyeApp {
         this.applyBtn = document.getElementById('applyBtn');
         this.resetBtn = document.getElementById('resetBtn');
         this.dropZone = document.getElementById('dropZone');
+        this.previewToggle = document.getElementById('previewToggle');
     }
     
     initEventListeners() {
@@ -34,7 +41,10 @@ class EerieEyeApp {
         this.saveBtn.addEventListener('click', () => this.saveImage());
         
         // Effect selection
-        this.effectSelect.addEventListener('change', () => this.updateParamsUI());
+        this.effectSelect.addEventListener('change', () => {
+            this.updateParamsUI();
+            this.schedulePreview();
+        });
         
         // Apply and Reset
         this.applyBtn.addEventListener('click', () => this.applyEffect());
@@ -44,6 +54,18 @@ class EerieEyeApp {
         this.dropZone.addEventListener('dragover', (e) => this.handleDragOver(e));
         this.dropZone.addEventListener('dragleave', () => this.handleDragLeave());
         this.dropZone.addEventListener('drop', (e) => this.handleDrop(e));
+        
+        // Preview toggle
+        if (this.previewToggle) {
+            this.previewToggle.addEventListener('change', (e) => {
+                this.isPreviewEnabled = e.target.checked;
+                if (this.isPreviewEnabled) {
+                    this.schedulePreview();
+                } else {
+                    this.resetPreview();
+                }
+            });
+        }
     }
     
     async loadEffects() {
@@ -112,6 +134,7 @@ class EerieEyeApp {
             
             slider.addEventListener('input', () => {
                 valueDisplay.textContent = parseFloat(slider.value).toFixed(2);
+                this.schedulePreview();
             });
             
             group.appendChild(slider);
@@ -126,12 +149,14 @@ class EerieEyeApp {
                 if (val === param.default) option.selected = true;
                 select.appendChild(option);
             });
+            select.addEventListener('change', () => this.schedulePreview());
             group.appendChild(select);
         } else if (param.type === 'checkbutton' || param.type === 'checkbox') {
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.name = param.name;
             checkbox.checked = param.default;
+            checkbox.addEventListener('change', () => this.schedulePreview());
             group.appendChild(checkbox);
         }
         
@@ -187,11 +212,17 @@ class EerieEyeApp {
                 this.originalImage = img;
                 this.currentImage = img;
                 this.displayImage(img);
+                this.storeOriginalImageData();
                 this.enableControls();
             };
             img.src = e.target.result;
         };
         reader.readAsDataURL(file);
+    }
+    
+    storeOriginalImageData() {
+        // Store the original image data for preview operations
+        this.originalImageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
     }
     
     displayImage(img) {
@@ -219,6 +250,53 @@ class EerieEyeApp {
         // Show canvas, hide drop zone
         this.canvas.classList.add('visible');
         this.dropZone.classList.add('hidden');
+    }
+    
+    schedulePreview() {
+        // Debounce preview updates
+        if (this.previewTimeout) {
+            clearTimeout(this.previewTimeout);
+        }
+        this.previewTimeout = setTimeout(() => this.applyPreview(), 50);
+    }
+    
+    applyPreview() {
+        const selectedEffect = this.effectSelect.value;
+        if (!selectedEffect || !this.originalImageData || !this.isPreviewEnabled) {
+            return;
+        }
+        
+        // Check if this effect has a client-side implementation
+        if (!hasClientEffect(selectedEffect)) {
+            // No client-side preview for this effect
+            return;
+        }
+        
+        try {
+            const params = this.getParamValues();
+            
+            // Create a copy of the original image data
+            const inputData = new ImageData(
+                new Uint8ClampedArray(this.originalImageData.data),
+                this.originalImageData.width,
+                this.originalImageData.height
+            );
+            
+            // Apply the effect client-side
+            const resultData = applyClientEffect(selectedEffect, inputData, params);
+            
+            // Display the result
+            this.ctx.putImageData(resultData, 0, 0);
+        } catch (error) {
+            console.error('Preview error:', error);
+        }
+    }
+    
+    resetPreview() {
+        // Restore the original image data
+        if (this.originalImageData) {
+            this.ctx.putImageData(this.originalImageData, 0, 0);
+        }
     }
     
     enableControls() {
@@ -263,6 +341,7 @@ class EerieEyeApp {
                 img.onload = () => {
                     this.currentImage = img;
                     this.displayImage(img);
+                    this.storeOriginalImageData();
                 };
                 img.src = result.image;
             } else {
@@ -281,6 +360,7 @@ class EerieEyeApp {
         if (this.originalImage) {
             this.currentImage = this.originalImage;
             this.displayImage(this.originalImage);
+            this.storeOriginalImageData();
         }
     }
     
